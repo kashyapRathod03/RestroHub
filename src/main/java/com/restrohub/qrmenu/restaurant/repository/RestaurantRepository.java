@@ -8,5 +8,5 @@ import com.restrohub.qrmenu.restaurant.entity.Restaurant;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
-    boolean existsByRestName(String restName);
+//    boolean existsByRestName(String restName);
 }

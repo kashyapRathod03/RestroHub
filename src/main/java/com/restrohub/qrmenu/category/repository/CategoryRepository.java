@@ -12,5 +12,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
 	List<Category> findByMenu_MenuId(long menuId);
 
-	List<Category> findByIsDeletedFalse();
+//	List<Category> findByIsDeletedFalse();
 }

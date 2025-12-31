@@ -24,7 +24,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByBranch_BranchId(Long branchId);
 
-    List<Order> findByStatus(boolean status);
+//    List<Order> findByStatus(boolean status);
     
     @Query("SELECT o FROM Order o WHERE o.branch.branchId = :branchId " +
            "AND o.createdAt BETWEEN :startDate AND :endDate")

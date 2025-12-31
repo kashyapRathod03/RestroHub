@@ -41,7 +41,7 @@ public class Address {
     private String add2;
 
     // Inverse side of OneToOne (Branch owns it)
-    @OneToOne(mappedBy = "branchAddress", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
     private Branch branch;
 
     public long getAddId() {

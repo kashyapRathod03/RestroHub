@@ -44,7 +44,7 @@ public class OrderMapper {
 	     if (item == null) return null;
 //	return null;
 	     return OrderItemResponse.builder()
-	             .id(item.getId())
+	             .id(item.getOrderItemid())
 	             .foodId(item.getFood().getFoodId())
 	             .foodName(item.getFood().getName())
 	             .foodImageUrl(item.getFood().getImageUrl())

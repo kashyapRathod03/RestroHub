@@ -7,14 +7,8 @@ import java.util.Set;
 
 import com.restrohub.qrmenu.food.entity.Food;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
+import com.restrohub.qrmenu.menu.entity.Menu;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,21 +35,20 @@ public class Category {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "is_delete")
     @Builder.Default
+    @Column(name = "is_delete")
     private Boolean isDelete = false;
 
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
 
-    @ManyToMany(mappedBy = "categories")
     @Builder.Default
+    @ManyToMany(mappedBy = "categories")
     private Set<Food> foods = new HashSet<>();
 
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "menu_id")
-    // private Menu menu;
-
+    @Builder.Default
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
+    private Set<Menu> menu = new HashSet<>();
 
     @PreUpdate
     protected void onUpdate() {
