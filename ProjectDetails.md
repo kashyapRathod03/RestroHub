@@ -1,9 +1,7 @@
-Got it 👍
-Below is a **complete, ready-to-use section** you can directly add to your README, plus a **Swagger / OpenAPI 3.0 spec**.
-
----
 
 # 📬 API Request & Response Examples
+
+---
 
 ## 1️⃣ Create New Order
 
