@@ -91,26 +91,26 @@ public class CategoryDTO {
 //		this.menu = menu;
 //	}
 
-	public CategoryDTO categoryToPojo(Category category) {
+	public CategoryDTO categoryToDto(Category category) {
 
 		CategoryDTO pojo = new CategoryDTO();
-		pojo.setCatId(category.getCategoryId());
-		pojo.setCatName(category.getName());
-		pojo.setCatDesc(category.getDescription());
-		pojo.setDeleted(category.getIsDelete());
+		pojo.setCategoryId(category.getCategoryId());
+		pojo.setName(category.getName());
+		pojo.setDescription(category.getDescription());
+		pojo.setIsDelete(category.getIsDelete());
 		pojo.setUpdatedDate(category.getUpdatedDate());
 		pojo.setFoods(category.getFoods());
 		return pojo;
 	}
 	
-	public Category pojoToDao(CategoryDTO pojo) {
+	public Category dtoToCategory(CategoryDTO pojo) {
 
 		Category category = new Category();
 		category.setCategoryId(pojo.getCategoryId());
-		category.setCatDesc(pojo.getDescription());
-		category.setCatName(pojo.getName());
-		category.setCreatedDate(pojo.getCreatedDate());
-		category.setDeleted(pojo.getIsDelete());
+		category.setDescription(pojo.getDescription());
+		category.setName(pojo.getName());
+//		category.setCreatedDate(pojo.getCreatedDate());
+		category.setIsDelete(pojo.getIsDelete());
 		category.setFoods(pojo.getFoods());
 //		category.setMenu(pojo.getMenu());
 		category.setUpdatedDate(pojo.getUpdatedDate());

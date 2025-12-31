@@ -12,15 +12,14 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	CategoryRepository  categoryRepository;
-	
-	@Autowired
+
 	CategoryDTO categoryDto;
-	
+
 	@Override
-	public CategoryDTO saveCategory(CategoryDTO category) {
+	public CategoryDTO saveCategory(CategoryDTO categoryDto) {
 		
-		Category dao = categoryRepository.save(categoryDto.pojoToDao(category));
-		CategoryDTO pojo = categoryDto.daoToPojo(dao);
+		Category dao = categoryRepository.save(categoryDto.dtoToCategory(categoryDto));
+		CategoryDTO pojo = categoryDto.categoryToDto(dao);
 		return pojo;
 	}
 
@@ -28,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public CategoryDTO getCategory(long id) {
 		
-		CategoryDTO pojo = categoryDto.daoToPojo(categoryRepository.getById(id));
+		CategoryDTO pojo = categoryDto.categoryToDto(categoryRepository.getById(id));
 		return pojo;
 	}
 }
