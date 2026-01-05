@@ -8,48 +8,48 @@ import java.util.Set;
 
 import com.restrohub.qrmenu.category.entity.Category;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "T_food_master")
+@Table(name = "foods", indexes = {
+        @Index(name = "idx_food_name", columnList = "name"),
+        @Index(name = "idx_food_category", columnList = "category"),
+        @Index(name = "idx_food_available", columnList = "available")
+})
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Food {
+@EqualsAndHashCode(of = "foodId")
+@SQLDelete(sql = "UPDATE foods SET is_deleted = true WHERE id = ?")
+@SQLRestriction("is_deleted = false")
+public class Food  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "food_id")
     private Long foodId;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 255)
     private String description;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price", nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private Boolean isAvailable = true;
 
     @Column(name = "date_created")
     private LocalDateTime dateCreated;
@@ -74,13 +74,13 @@ public class Food {
     @Builder.Default
     private Set<Category> categories = new HashSet<>();
 
-    @PrePersist
+    @PrePersist // this automaticatically add dateCreated and updatedDate when new entity added
     protected void onCreate() {
         dateCreated = LocalDateTime.now();
         updatedDate = LocalDateTime.now();
     }
 
-    @PreUpdate
+    @PreUpdate // this automaticatically update updatedDate when existing entity update
     protected void onUpdate() {
         updatedDate = LocalDateTime.now();
     }
