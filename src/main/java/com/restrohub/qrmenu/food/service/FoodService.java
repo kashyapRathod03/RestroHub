@@ -1,6 +1,7 @@
 // src/main/java/com/restrohub/qrmenu/food/service/FoodService.java
 package com.restrohub.qrmenu.food.service;
 
+import com.restrohub.qrmenu.common.generic.PageResponseDTO;
 import com.restrohub.qrmenu.food.dto.*;
 import org.springframework.data.domain.Pageable;
 
@@ -16,13 +17,13 @@ public interface FoodService {
 
     FoodResponseDTO getFoodByName(String name);
 
-    FoodPageResponseDTO getAllFoods(Pageable pageable);
+    PageResponseDTO<FoodResponseDTO> getAllFoods(Pageable pageable);
 
-    FoodPageResponseDTO getAvailableFoods(Pageable pageable);
+    PageResponseDTO<FoodResponseDTO> getAvailableFoods(Pageable pageable);
 
-    FoodPageResponseDTO getFoodsByCategory(String category, Pageable pageable);
+    PageResponseDTO<FoodResponseDTO> getFoodsByCategory(String category, Pageable pageable);
 
-    FoodPageResponseDTO searchFoods(
+    PageResponseDTO<FoodResponseDTO> searchFoods(
             String name,
             String category,
             Boolean isAvailable,

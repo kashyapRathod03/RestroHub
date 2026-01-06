@@ -54,7 +54,7 @@ public class SecurityConfig {
 						.requestMatchers(HttpMethod.POST, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
 						.requestMatchers(HttpMethod.PUT, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
 						.requestMatchers(HttpMethod.DELETE, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
-						.anyRequest().permitAll()
+						.anyRequest().permitAll() //authenticate()
 				);
 //				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

@@ -2,6 +2,7 @@
 package com.restrohub.qrmenu.food.controller;
 
 import com.restrohub.qrmenu.common.exception.ErrorResponse;
+import com.restrohub.qrmenu.common.generic.PageResponseDTO;
 import com.restrohub.qrmenu.food.dto.*;
 import com.restrohub.qrmenu.food.service.FoodService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -100,9 +101,9 @@ public class FoodController {
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully retrieved food items",
-                    content = @Content(schema = @Schema(implementation = FoodPageResponseDTO.class)))
+                    content = @Content(schema = @Schema(implementation = PageResponseDTO.class)))
     })
-    public ResponseEntity<FoodPageResponseDTO> getAllFoods(
+    public ResponseEntity<PageResponseDTO<FoodResponseDTO>> getAllFoods(
             @Parameter(description = "Page number (0-indexed)")
             @RequestParam(defaultValue = DEFAULT_PAGE) int page,
 
@@ -122,7 +123,7 @@ public class FoodController {
                 : Sort.by(sortBy).ascending();
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        FoodPageResponseDTO response = foodService.getAllFoods(pageable);
+        PageResponseDTO<FoodResponseDTO> response = foodService.getAllFoods(pageable);
         return ResponseEntity.ok(response);
     }
 
@@ -134,7 +135,7 @@ public class FoodController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully retrieved available food items")
     })
-    public ResponseEntity<FoodPageResponseDTO> getAvailableFoods(
+    public ResponseEntity<PageResponseDTO<FoodResponseDTO>> getAvailableFoods(
             @RequestParam(defaultValue = DEFAULT_PAGE) int page,
             @RequestParam(defaultValue = DEFAULT_SIZE) int size,
             @RequestParam(defaultValue = DEFAULT_SORT_FIELD) String sortBy,
@@ -147,7 +148,7 @@ public class FoodController {
                 : Sort.by(sortBy).ascending();
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        FoodPageResponseDTO response = foodService.getAvailableFoods(pageable);
+        PageResponseDTO<FoodResponseDTO> response = foodService.getAvailableFoods(pageable);
         return ResponseEntity.ok(response);
     }
 
@@ -159,7 +160,7 @@ public class FoodController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully retrieved food items")
     })
-    public ResponseEntity<FoodPageResponseDTO> getFoodsByCategory(
+    public ResponseEntity<PageResponseDTO<FoodResponseDTO>> getFoodsByCategory(
             @Parameter(description = "Category name", required = true)
             @PathVariable String category,
             @RequestParam(defaultValue = DEFAULT_PAGE) int page,
@@ -168,7 +169,7 @@ public class FoodController {
         log.debug("REST request to get foods by category: {}", category);
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("name").ascending());
-        FoodPageResponseDTO response = foodService.getFoodsByCategory(category, pageable);
+        PageResponseDTO<FoodResponseDTO> response = foodService.getFoodsByCategory(category, pageable);
         return ResponseEntity.ok(response);
     }
 
@@ -180,7 +181,7 @@ public class FoodController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully retrieved matching food items")
     })
-    public ResponseEntity<FoodPageResponseDTO> searchFoods(
+    public ResponseEntity<PageResponseDTO<FoodResponseDTO>> searchFoods(
             @Parameter(description = "Search by name (partial match)")
             @RequestParam(required = false) String name,
 
@@ -211,7 +212,7 @@ public class FoodController {
                 : Sort.by(sortBy).ascending();
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        FoodPageResponseDTO response = foodService.searchFoods(
+        PageResponseDTO<FoodResponseDTO> response = foodService.searchFoods(
                 name, category, isAvailable, isVegetarian, minPrice, maxPrice, pageable);
         return ResponseEntity.ok(response);
     }

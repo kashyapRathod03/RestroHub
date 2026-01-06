@@ -1,6 +1,7 @@
 // src/main/java/com/restrohub/qrmenu/food/mapper/FoodMapper.java
 package com.restrohub.qrmenu.food.mapper;
 
+import com.restrohub.qrmenu.common.generic.PageResponseDTO;
 import com.restrohub.qrmenu.food.dto.*;
 import com.restrohub.qrmenu.food.entity.Food;
 import org.mapstruct.*;
@@ -22,8 +23,8 @@ public interface FoodMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateEntityFromDTO(FoodUpdateDTO updateDTO, @MappingTarget Food food);
 
-    default FoodPageResponseDTO toPageResponseDTO(Page<Food> foodPage) {
-        return FoodPageResponseDTO.builder()
+    default PageResponseDTO<FoodResponseDTO> toPageResponseDTO(Page<Food> foodPage) {
+        return PageResponseDTO.<FoodResponseDTO>builder()
                 .content(toResponseDTOList(foodPage.getContent()))
                 .pageNumber(foodPage.getNumber())
                 .pageSize(foodPage.getSize())
