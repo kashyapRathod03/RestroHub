@@ -3,10 +3,10 @@ package com.restrohub.qrmenu.food.service;
 
 import com.restrohub.qrmenu.common.exception.ResourceAlreadyExistsException;
 import com.restrohub.qrmenu.common.exception.ResourceNotFoundException;
+import com.restrohub.qrmenu.common.generic.GenericMapper;
 import com.restrohub.qrmenu.common.generic.PageResponseDTO;
 import com.restrohub.qrmenu.food.dto.*;
 import com.restrohub.qrmenu.food.entity.Food;
-import com.restrohub.qrmenu.food.mapper.FoodMapper;
 import com.restrohub.qrmenu.food.repository.FoodRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ import java.lang.Long;
 public class FoodServiceImpl implements FoodService {
 
     private final FoodRepository foodRepository;
-    private final FoodMapper foodMapper;
+    private final GenericMapper<Food,FoodRequestDTO,FoodResponseDTO,FoodUpdateDTO> foodMapper;
 
     private static final String FOOD_NOT_FOUND_MSG = "Food not found with id: %s";
     private static final String FOOD_EXISTS_MSG = "Food already exists with name: %s";
