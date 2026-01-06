@@ -3,6 +3,7 @@ package com.restrohub.qrmenu.food.service;
 
 import com.restrohub.qrmenu.common.exception.ResourceAlreadyExistsException;
 import com.restrohub.qrmenu.common.exception.ResourceNotFoundException;
+import com.restrohub.qrmenu.common.generic.PageResponseDTO;
 import com.restrohub.qrmenu.food.dto.*;
 import com.restrohub.qrmenu.food.entity.Food;
 import com.restrohub.qrmenu.food.mapper.FoodMapper;
@@ -75,7 +76,7 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     @Cacheable(value = "foods", key = "#pageable.pageNumber + '-' + #pageable.pageSize")
-    public FoodPageResponseDTO getAllFoods(Pageable pageable) {
+    public PageResponseDTO<FoodResponseDTO> getAllFoods(Pageable pageable) {
         log.debug("Fetching all foods, page: {}, size: {}",
                 pageable.getPageNumber(), pageable.getPageSize());
 
@@ -84,7 +85,7 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public FoodPageResponseDTO getAvailableFoods(Pageable pageable) {
+    public PageResponseDTO<FoodResponseDTO> getAvailableFoods(Pageable pageable) {
         log.debug("Fetching available foods, page: {}, size: {}",
                 pageable.getPageNumber(), pageable.getPageSize());
 
@@ -93,7 +94,7 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public FoodPageResponseDTO getFoodsByCategory(String category, Pageable pageable) {
+    public PageResponseDTO<FoodResponseDTO> getFoodsByCategory(String category, Pageable pageable) {
         log.debug("Fetching foods by category: {}, page: {}",
                 category, pageable.getPageNumber());
 
@@ -102,7 +103,7 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public FoodPageResponseDTO searchFoods(
+    public PageResponseDTO<FoodResponseDTO> searchFoods(
             String name,
             String category,
             Boolean isAvailable,
