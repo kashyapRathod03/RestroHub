@@ -15,7 +15,7 @@ import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "foods", indexes = {
+@Table(name = "t_food_master", indexes = {
         @Index(name = "idx_food_name", columnList = "name"),
 //        @Index(name = "idx_food_category", columnList = "category"),
         @Index(name = "idx_food_available", columnList = "isAvailable")

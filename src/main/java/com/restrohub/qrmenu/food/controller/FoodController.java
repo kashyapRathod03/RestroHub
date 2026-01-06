@@ -47,7 +47,7 @@ public class FoodController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
+//    @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
     @Operation(
             summary = "Create a new food item",
             description = "Creates a new food item in the menu. Requires ADMIN or MANAGER role.",
@@ -69,7 +69,7 @@ public class FoodController {
         log.info("REST request to create food item: {}", requestDTO.getName());
         FoodResponseDTO response = foodService.createFood(requestDTO);
 
-        URI location = URI.create("/api/v1/foods/" + response.getFoodId());
+        URI location = URI.create("/restroly/api/v1/foods/" + response.getFoodId());
         return ResponseEntity.created(location).body(response);
     }
 
