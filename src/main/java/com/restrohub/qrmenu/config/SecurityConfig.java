@@ -54,9 +54,9 @@ public class SecurityConfig {
 						.requestMatchers(HttpMethod.POST, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
 						.requestMatchers(HttpMethod.PUT, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
 						.requestMatchers(HttpMethod.DELETE, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
-						.anyRequest().authenticated()
-				)
-				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+						.anyRequest().permitAll()
+				);
+//				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 		// For H2 console
 		http.headers(headers -> headers.frameOptions(frame -> frame.disable()));
