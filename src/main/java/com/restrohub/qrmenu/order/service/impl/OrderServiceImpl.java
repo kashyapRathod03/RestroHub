@@ -10,7 +10,6 @@ import com.restrohub.qrmenu.food.repository.FoodRepository;
 import com.restrohub.qrmenu.order.builder.OrderDirector;
 import com.restrohub.qrmenu.order.dto.*;
 import com.restrohub.qrmenu.order.entity.Order;
-import com.restrohub.qrmenu.order.entity.OrderItem;
 import com.restrohub.qrmenu.order.mapper.OrderMapper;
 import com.restrohub.qrmenu.order.repository.OrderRepository;
 import com.restrohub.qrmenu.order.service.OrderService;
