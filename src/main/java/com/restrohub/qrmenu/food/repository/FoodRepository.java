@@ -27,6 +27,7 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
 
     boolean existsByNameIgnoreCase(String name);
 
+    @Query("SELECT f FROM Food f JOIN f.categories c WHERE c.name = :category ")
     Page<Food> findByCategory(String category, Pageable pageable);
 
     Page<Food> findByIsAvailable(Boolean isAvailable, Pageable pageable);
@@ -34,7 +35,7 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
     @Query("SELECT f FROM Food f WHERE f.isAvailable = true")
     Page<Food> findAllAvailable(Pageable pageable);
 
-    @Query("SELECT f FROM Food f WHERE f.category = :category AND f.isAvailable = true")
+    @Query("SELECT f FROM Food f JOIN f.categories c WHERE c.name = :category AND f.isAvailable = true")
     Page<Food> findAvailableByCategory(@Param("category") String category, Pageable pageable);
 
     @Query("SELECT f FROM Food f WHERE f.price BETWEEN :minPrice AND :maxPrice")
@@ -43,25 +44,22 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
             @Param("maxPrice") BigDecimal maxPrice,
             Pageable pageable);
 
-    @Query("SELECT f FROM Food f WHERE f.isVegetarian = true AND f.isAvailable = true")
-    Page<Food> findAllVegetarian(Pageable pageable);
-
     @Query("SELECT f FROM Food f WHERE f.isVeg = true AND f.isAvailable = true")
     Page<Food> findAllVeg(Pageable pageable);
 
-    @Query("SELECT f FROM Food f WHERE f.isGlutenFree = true AND f.isAvailable = true")
-    Page<Food> findAllGlutenFree(Pageable pageable);
-
-    @Query("SELECT DISTINCT f.category FROM Food f ORDER BY f.category")
+    @Query("SELECT DISTINCT c.name FROM Food f JOIN f.categories c ORDER BY c.name")
     List<String> findAllCategories();
 
-    @Query("SELECT f FROM Food f WHERE " +
-            "(:name IS NULL OR LOWER(f.name) LIKE LOWER(CONCAT('%', :name, '%'))) AND " +
-            "(:category IS NULL OR f.category = :category) AND " +
-            "(:isAvailable IS NULL OR f.isAvailable = :isAvailable) AND " +
-            "(:isVegetarian IS NULL OR f.isVegetarian = :isVegetarian) AND " +
-            "(:minPrice IS NULL OR f.price >= :minPrice) AND " +
-            "(:maxPrice IS NULL OR f.price <= :maxPrice)")
+    @Query("""
+        SELECT DISTINCT f FROM Food f
+        LEFT JOIN f.categories c
+        WHERE (:name IS NULL OR LOWER(f.name) LIKE LOWER(CONCAT('%', :name, '%')))
+          AND (:category IS NULL OR c.name = :category)
+          AND (:isAvailable IS NULL OR f.isAvailable = :isAvailable)
+          AND (:isVegetarian IS NULL OR f.isVeg = :isVegetarian)
+          AND (:minPrice IS NULL OR f.price >= :minPrice)
+          AND (:maxPrice IS NULL OR f.price <= :maxPrice)
+    """)
     Page<Food> searchFoods(
             @Param("name") String name,
             @Param("category") String category,

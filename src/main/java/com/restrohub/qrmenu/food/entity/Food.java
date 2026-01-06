@@ -17,8 +17,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 @Table(name = "foods", indexes = {
         @Index(name = "idx_food_name", columnList = "name"),
-        @Index(name = "idx_food_category", columnList = "category"),
-        @Index(name = "idx_food_available", columnList = "available")
+//        @Index(name = "idx_food_category", columnList = "category"),
+        @Index(name = "idx_food_available", columnList = "isAvailable")
 })
 @Getter
 @Setter
@@ -26,8 +26,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(of = "foodId")
-@SQLDelete(sql = "UPDATE foods SET is_deleted = true WHERE id = ?")
-@SQLRestriction("is_deleted = false")
+@SQLDelete(sql = "UPDATE foods SET is_delete = true WHERE id = ?")
+@SQLRestriction("is_delete = false")
 public class Food  {
 
     @Id
@@ -47,7 +47,7 @@ public class Food  {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(nullable = false)
+    @Column(name = "isAvailable",nullable = false)
     @Builder.Default
     private Boolean isAvailable = true;
 
