@@ -84,7 +84,7 @@ public class RestaurantController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping(value = "/{id}",
+    @PutMapping(value = "/{restaurantId}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
@@ -113,7 +113,7 @@ public class RestaurantController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{restaurantId}")
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(

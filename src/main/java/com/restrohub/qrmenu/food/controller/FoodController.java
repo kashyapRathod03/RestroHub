@@ -70,7 +70,7 @@ public class FoodController {
         return ResponseEntity.created(location).body(response);
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{foodId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Get food item by ID",
             description = "Retrieves a food item by its unique identifier"
@@ -227,7 +227,7 @@ public class FoodController {
         return ResponseEntity.ok(categories);
     }
 
-    @PutMapping(value = "/{id}",
+    @PutMapping(value = "/{foodId}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
@@ -256,7 +256,7 @@ public class FoodController {
         return ResponseEntity.ok(response);
     }
 
-    @PatchMapping(value = "/{id}/availability", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/{foodId}/availability", produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
     @Operation(
             summary = "Update food availability",
@@ -278,7 +278,7 @@ public class FoodController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{foodId}")
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(

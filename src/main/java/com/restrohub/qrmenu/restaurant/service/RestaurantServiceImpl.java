@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Transactional(readOnly = true)
 public class RestaurantServiceImpl implements  RestaurantService{
 
     private final RestaurantRepository restaurantRepository;

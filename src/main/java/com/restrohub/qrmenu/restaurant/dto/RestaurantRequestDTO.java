@@ -26,7 +26,7 @@ public class RestaurantRequestDTO {
             example = "+91-9876543210")
     private String phoneNumber;
 
-    private List<Branch> branches;
+//    private List<Branch> branches;
 
     @Builder.Default
     private Boolean isActive = true;
