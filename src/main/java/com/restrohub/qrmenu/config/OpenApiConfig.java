@@ -40,14 +40,14 @@ public class OpenApiConfig {
                         .description(apiDescription)
                         .version(apiVersion)
                         .contact(new Contact()
-                                .name("RestroHub Team")
-                                .email("support@restrohub.com")
-                                .url("https://restrohub.com"))
+                                .name("Restroly Team")
+                                .email("support@restroly.com")
+                                .url("https://restroly.com"))
                         .license(new License()
                                 .name("Apache 2.0")
                                 .url("https://www.apache.org/licenses/LICENSE-2.0")))
                 .servers(List.of(
-                        new Server().url("/api").description("API Server")
+                        new Server().url("/restroly").description("API Server")
                 ));
     }
 

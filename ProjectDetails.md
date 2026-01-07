@@ -2,7 +2,56 @@
 # 📬 API Request & Response Examples
 
 ---
+## AUTH APIS 
+```bash
+# 1. Login and get tokens
+curl -X POST http://localhost:8080/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "admin",
+    "password": "admin123"
+  }'
 
+# Response:
+# {
+#   "success": true,
+#   "message": "Login successful",
+#   "data": {
+#     "accessToken": "eyJhbGciOiJIUzI1NiJ9...",
+#     "refreshToken": "eyJhbGciOiJIUzI1NiJ9...",
+#     "tokenType": "Bearer",
+#     "expiresIn": 86400,
+#     "username": "admin",
+#     "roles": ["ROLE_ADMIN", "ROLE_USER"]
+#   }
+# }
+
+# 2. Use the token to access protected endpoints
+curl -X POST http://localhost:8080/api/v1/foods \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9..." \
+  -d '{
+    "name": "Margherita Pizza",
+    "price": 12.99,
+    "category": "Pizza",
+    "restaurantId": 1
+  }'
+
+# 3. Refresh the token
+curl -X POST http://localhost:8080/api/v1/auth/refresh \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refreshToken": "eyJhbGciOiJIUzI1NiJ9..."
+  }'
+
+# 4. Validate token
+curl -X GET http://localhost:8080/api/v1/auth/validate \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9..."
+
+# 5. Logout
+curl -X POST http://localhost:8080/api/v1/auth/logout \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9..."
+```
 ## 1️⃣ Create New Order
 
 **POST** `/api/v1/orders`

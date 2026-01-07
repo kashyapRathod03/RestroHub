@@ -3,6 +3,7 @@ package com.restrohub.qrmenu.food.controller;
 
 import com.restrohub.qrmenu.common.exception.ErrorResponse;
 import com.restrohub.qrmenu.common.generic.PageResponseDTO;
+import com.restrohub.qrmenu.common.util.ApiConstants;
 import com.restrohub.qrmenu.food.dto.*;
 import com.restrohub.qrmenu.food.service.FoodService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,7 +33,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/foods")
+@RequestMapping(ApiConstants.API_V1 +"/foods")
 @RequiredArgsConstructor
 @Slf4j
 @Validated
@@ -70,7 +71,7 @@ public class FoodController {
         log.info("REST request to create food item: {}", requestDTO.getName());
         FoodResponseDTO response = foodService.createFood(requestDTO);
 
-        URI location = URI.create("/restroly/api/v1/foods/" + response.getFoodId());
+        URI location = URI.create("/"+ApiConstants.APP_NAME+ApiConstants.API_V1 +"/foods/" + response.getFoodId());
         return ResponseEntity.created(location).body(response);
     }
 
@@ -86,7 +87,7 @@ public class FoodController {
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     public ResponseEntity<FoodResponseDTO> getFoodById(
-            @Parameter(description = "UUID of the food item", required = true)
+            @Parameter(description = "Long Id of the food item", required = true)
             @PathVariable Long foodId) {
 
         log.debug("REST request to get food by id: {}", foodId);
