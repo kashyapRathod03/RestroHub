@@ -10,9 +10,6 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring",
-        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
-        unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface GenericMapper<E,RD,D,U> { //E- Entity , RD - Request DTO, D - Response DTO , U - Update DTO
 
     E toEntity(RD rd);
