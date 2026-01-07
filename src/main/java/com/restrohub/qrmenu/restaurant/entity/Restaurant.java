@@ -5,23 +5,16 @@ import java.util.List;
 
 import com.restrohub.qrmenu.branch.entity.Branch;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "t_restarant_master")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "t_restaurant_master")
 public class Restaurant {
 
 	@Id
@@ -29,23 +22,36 @@ public class Restaurant {
 	@Column(name = "rest_id")
 	private long restId;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "name", nullable = false, length = 255)
 	private String name;
 
-	@Column(name = "description", nullable = false)
+	@Column(name = "description", nullable = false, length = 255)
 	private String description;
 
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<Branch> branches;
+
+	@Column(name = "isActive")
+	@Builder.Default
+	private Boolean isActive = true;
+
 	@Column(name = "created_at", updatable = false)
 	private LocalDateTime createdAt;
 
-	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<Branch> branches;
+	@Column(name = "updated_date")
+	private LocalDateTime updatedDate;
 
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = LocalDateTime.now();
+		this.updatedDate = LocalDateTime.now();
+	}
+
+	@PreUpdate  // this automaticatically update updatedDate when existing entity update
+	protected void onUpdate() {
+		updatedDate = LocalDateTime.now();
 	}
 }

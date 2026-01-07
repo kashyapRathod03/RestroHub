@@ -19,10 +19,10 @@ public interface GenericMapper<E,RD,D,U> { //E- Entity , RD - Request DTO, D - R
 
     D toResponseDTO(E e);
 
-    List<D> toResponseDTOList(List<E> foods);
+    List<D> toResponseDTOList(List<E> eList);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateEntityFromDTO(U updateDTO, @MappingTarget E food);
+    void updateEntityFromDTO(U updateDTO, @MappingTarget E e);
 
     default PageResponseDTO<D> toPageResponseDTO(Page<E> e) {
         return PageResponseDTO.<D>builder()
