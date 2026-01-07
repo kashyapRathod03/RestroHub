@@ -42,11 +42,6 @@ public class FoodController {
 
     private final FoodService foodService;
 
-    private static final String DEFAULT_PAGE = "0";
-    private static final String DEFAULT_SIZE = "10";
-    private static final String DEFAULT_SORT_FIELD = "name";
-    private static final String DEFAULT_SORT_DIRECTION = "asc";
-
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
 //    @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
@@ -75,7 +70,7 @@ public class FoodController {
         return ResponseEntity.created(location).body(response);
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{foodId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(
             summary = "Get food item by ID",
             description = "Retrieves a food item by its unique identifier"
@@ -106,16 +101,16 @@ public class FoodController {
     })
     public ResponseEntity<PageResponseDTO<FoodResponseDTO>> getAllFoods(
             @Parameter(description = "Page number (0-indexed)")
-            @RequestParam(defaultValue = DEFAULT_PAGE) int page,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE) int page,
 
             @Parameter(description = "Number of items per page")
-            @RequestParam(defaultValue = DEFAULT_SIZE) int size,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE_SIZE) int size,
 
             @Parameter(description = "Sort field")
-            @RequestParam(defaultValue = DEFAULT_SORT_FIELD) String sortBy,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_SORT_FIELD) String sortBy,
 
             @Parameter(description = "Sort direction (asc/desc)")
-            @RequestParam(defaultValue = DEFAULT_SORT_DIRECTION) String sortDirection) {
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_SORT_DIRECTION) String sortDirection) {
 
         log.debug("REST request to get all foods, page: {}, size: {}", page, size);
 
@@ -137,10 +132,10 @@ public class FoodController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved available food items")
     })
     public ResponseEntity<PageResponseDTO<FoodResponseDTO>> getAvailableFoods(
-            @RequestParam(defaultValue = DEFAULT_PAGE) int page,
-            @RequestParam(defaultValue = DEFAULT_SIZE) int size,
-            @RequestParam(defaultValue = DEFAULT_SORT_FIELD) String sortBy,
-            @RequestParam(defaultValue = DEFAULT_SORT_DIRECTION) String sortDirection) {
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE) int page,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE_SIZE) int size,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_SORT_FIELD) String sortBy,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_SORT_DIRECTION) String sortDirection) {
 
         log.debug("REST request to get available foods");
 
@@ -164,8 +159,8 @@ public class FoodController {
     public ResponseEntity<PageResponseDTO<FoodResponseDTO>> getFoodsByCategory(
             @Parameter(description = "Category name", required = true)
             @PathVariable String category,
-            @RequestParam(defaultValue = DEFAULT_PAGE) int page,
-            @RequestParam(defaultValue = DEFAULT_SIZE) int size) {
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE) int page,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE_SIZE) int size) {
 
         log.debug("REST request to get foods by category: {}", category);
 
@@ -201,10 +196,10 @@ public class FoodController {
             @Parameter(description = "Maximum price")
             @RequestParam(required = false) BigDecimal maxPrice,
 
-            @RequestParam(defaultValue = DEFAULT_PAGE) int page,
-            @RequestParam(defaultValue = DEFAULT_SIZE) int size,
-            @RequestParam(defaultValue = DEFAULT_SORT_FIELD) String sortBy,
-            @RequestParam(defaultValue = DEFAULT_SORT_DIRECTION) String sortDirection) {
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE) int page,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE_SIZE) int size,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_SORT_FIELD) String sortBy,
+            @RequestParam(defaultValue = ApiConstants.DEFAULT_SORT_DIRECTION) String sortDirection) {
 
         log.debug("REST request to search foods with filters");
 
@@ -232,7 +227,7 @@ public class FoodController {
         return ResponseEntity.ok(categories);
     }
 
-    @PutMapping(value = "/{id}",
+    @PutMapping(value = "/{foodId}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
@@ -261,7 +256,7 @@ public class FoodController {
         return ResponseEntity.ok(response);
     }
 
-    @PatchMapping(value = "/{id}/availability", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/{foodId}/availability", produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
     @Operation(
             summary = "Update food availability",
@@ -283,7 +278,7 @@ public class FoodController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{foodId}")
     @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(
