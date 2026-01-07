@@ -6,7 +6,6 @@ import com.restrohub.qrmenu.common.exception.ResourceNotFoundException;
 import com.restrohub.qrmenu.common.generic.PageResponseDTO;
 import com.restrohub.qrmenu.food.dto.*;
 import com.restrohub.qrmenu.food.entity.Food;
-import com.restrohub.qrmenu.food.mapper.FoodMapper;
 import com.restrohub.qrmenu.food.repository.FoodRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

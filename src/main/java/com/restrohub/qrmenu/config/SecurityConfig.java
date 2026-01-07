@@ -26,26 +26,30 @@ public class SecurityConfig {
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
 	private static final String[] PUBLIC_URLS = {
+			// Swagger/OpenAPI
 			"/v3/api-docs/**",
 			"/swagger-ui/**",
 			"/swagger-ui.html",
+			// Actuator
 			"/actuator/health",
 			"/actuator/info",
+			// H2 Console (dev only)
 			"/h2-console/**",
-			"/v1/auth/**"
+			// Auth endpoints
+			"/api/v1/auth/**"
 	};
 
 	private static final String[] PUBLIC_GET_URLS = {
-			"/v1/foods/**",
-			"/v1/categories/**",
-			"/v1/restaurants/**"
+			"/api/v1/foods/**",
+			"/api/v1/categories/**",
+			"/api/v1/restaurants/**"
 	};
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 				.csrf(AbstractHttpConfigurer::disable)
-			//	.cors(cors -> cors.configure(http))
+				.cors(cors -> cors.configure(http))
 				.sessionManagement(session ->
 						session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(auth -> auth
@@ -54,9 +58,10 @@ public class SecurityConfig {
 						.requestMatchers(HttpMethod.POST, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
 						.requestMatchers(HttpMethod.PUT, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
 						.requestMatchers(HttpMethod.DELETE, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
-						.anyRequest().permitAll() //authenticate()
-				);
-//				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+						// All other requests require authentication
+						.anyRequest().authenticated()
+				)
+				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
 		// For H2 console
 		http.headers(headers -> headers.frameOptions(frame -> frame.disable()));
