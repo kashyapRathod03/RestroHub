@@ -12,13 +12,18 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Schema(description = "Restaurant creation request payload")
+@Schema(description = "Restaurant create request payload")
 public class RestaurantRequestDTO {
 
+    @Schema(description = "Name of the restaurant", example = "Restroly")
     private String name;
 
+    @Schema(description = "Short description of the restaurant",
+            example = "A modern multi-cuisine restaurant")
     private String description;
 
+    @Schema(description = "Contact phone number of the restaurant",
+            example = "+91-9876543210")
     private String phoneNumber;
 
     private List<Branch> branches;
