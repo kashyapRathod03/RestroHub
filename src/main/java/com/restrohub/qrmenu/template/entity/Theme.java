@@ -3,6 +3,7 @@ package com.restrohub.qrmenu.template.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 // -------------------------
 // Theme (generic tokens)
@@ -44,8 +45,8 @@ public class Theme {
     // ========== Color Palette ==========
 
     // Primary Colors
-    @Column(name = "color_primary", nullable = false, length = 20)
-    private String colorPrimary;        // #f59e0b
+    @Column(name = "primary_color", nullable = false, length = 20)
+    private String primaryColor;        // #f59e0b
 
     @Column(name = "color_primary_hover", length = 20)
     private String colorPrimaryHover;   // #fbbf24
@@ -53,8 +54,8 @@ public class Theme {
     @Column(name = "color_primary_dark", length = 20)
     private String colorPrimaryDark;    // #d97706
 
-    @Column(name = "color_secondary", length = 20)
-    private String colorSecondary;
+    @Column(name = "secondary_color", length = 20)
+    private String secondaryColor;
 
     @Column(name = "color_accent", length = 20)
     private String colorAccent;
@@ -70,11 +71,11 @@ public class Theme {
     private String bgTertiary;          // #171717
 
     // Text Colors
-    @Column(name = "text_primary", length = 20)
-    private String textPrimary;         // #ffffff
+    @Column(name = "primary_text_color", length = 20)
+    private String PrimaryTextColor;         // #ffffff
 
-    @Column(name = "text_secondary", length = 20)
-    private String textSecondary;       // #9ca3af
+    @Column(name = "secondary_text_color", length = 20)
+    private String secondaryTextColor;       // #9ca3af
 
     @Column(name = "text_muted", length = 20)
     private String textMuted;           // #6b7280
@@ -114,12 +115,23 @@ public class Theme {
     // ========== Status ==========
 
     @Column(name = "is_active")
+    @Builder.Default
     private Boolean isActive = true;
 
+    @Column(name = "is_default")
+    @Builder.Default
+    private Boolean isDefault = false;
+
     @Column(name = "is_dark_mode")
+    @Builder.Default
     private Boolean isDarkMode = false;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
 }
