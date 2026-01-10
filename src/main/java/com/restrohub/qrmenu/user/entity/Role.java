@@ -1,55 +1,36 @@
 package com.restrohub.qrmenu.user.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.List;
 
 @Entity
 @Table(name = "t_role_master")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Role {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id")
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "role_id")
+	private Long id;
 
-    @Column(name = "role_name", nullable = false, unique = true)
-    private String roleName;
+	@Column(name = "role_name", nullable = false, unique = true)
+	private String name;
 
-    @Column(name = "role_desc")
-    private String roleDesc;
+	@Column(name = "role_desc")
+	private String description;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private List<User> users;
+	@Column(name = "is_active")
+	@Builder.Default
+	private Boolean isActive = true;
 
-	public long getId() {
-		return id;
-	}
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+	private List<User> users;
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
-	public String getRoleName() {
-		return roleName;
-	}
-
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
-
-	public String getRoleDesc() {
-		return roleDesc;
-	}
-
-	public void setRoleDesc(String roleDesc) {
-		this.roleDesc = roleDesc;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
 }
