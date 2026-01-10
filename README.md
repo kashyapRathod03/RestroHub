@@ -1,223 +1,176 @@
-# 📌 RestroHub
+# 🧭 RestroHub
 
-**RestroHub** is a Spring Boot based Restaurant QR-Menu and Ordering System.
-The project provides the backend APIs to manage menus, categories, foods, and QR code based ordering — enabling contactless restaurant experiences.
-
-This repo includes:
-
-* REST APIs for CRUD operations
-* JPA entities for menu, category & food
-* PostgreSQL database support
-* QR code generation modules
-* Spring Security stub for future enhancements
+**RestroHub** is a Spring Boot–based backend application that provides REST APIs for a **Restaurant QR Menu & Ordering System**.  
+It enables restaurants to manage menus, categories, and food items for a **contactless QR-based dining experience**.
 
 ---
 
-## 🧠 Features
+## 🚀 Features
 
-✔ Modular backend architecture
-✔ Category & Food management APIs
-✔ Many-to-many relationships (Category ⇄ Food)
-✔ QR menu support
-✔ PostgreSQL integration
-✔ Validation & exception handling
-✔ Secure endpoints (Spring Security)
-
-> *Further features may include waiter/room service apps, hotel food routing, order tracking, etc.* ([restrohub.com][1])
+- 🍽️ Food & Category Management
+- 📱 QR-based Menu Support
+- 🧩 Modular & Scalable Architecture
+- 🗄️ PostgreSQL Integration
+- 🔄 DTO Mapping using MapStruct
+- 🛡️ Validation & Global Exception Handling
+- 📘 Swagger / OpenAPI Documentation
+- 🔐 Spring Security ready (JWT support planned)
 
 ---
 
-## 📁 Repo Structure
+## 🏗️ Tech Stack
 
+| Layer        | Technology |
+|-------------|-----------|
+| Language     | Java 21 |
+| Framework    | Spring Boot |
+| ORM          | Spring Data JPA |
+| Database     | PostgreSQL |
+| Mapper       | MapStruct |
+| Security     | Spring Security |
+| Build Tool   | Gradle |
+| API Docs     | SpringDoc OpenAPI |
+| Validation   | Jakarta Validation |
+
+---
+
+## 📁 Project Structure
 ```
-RestroHub/
-├─ src/main/java
-│   └─ com/restrohub/qrmenu
-│       ├─ category
-│       ├─ food
-│       ├─ order
-│       ├─ config
-│       └─ utils
-├─ src/main/resources
-│   ├─ application.yml
-│   └─ sql/
-├─ build.gradle
-├─ settings.gradle
-├─ README.md
-└─ LICENSE (MIT)
-```
+src/main/java/com/restrohub/qrmenu
+├── category
+├── food
+├── order
+├── common
+├── config
+└── utils
+
+````
+
+---
+
+## ⚙️ Prerequisites
+
+Make sure you have installed:
+
+- Java 21
+- Gradle
+- PostgreSQL
+- Git
+- IDE (IntelliJ IDEA recommended)
+- Lombok & MapStruct annotation processing enabled
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-✔ Java 21
-✔ Gradle
-✔ PostgreSQL
-✔ IDE (IntelliJ/Eclipse)
-✔ Git
-
----
-
-### Setup
-
-1. **Clone the repo**
+### 1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/rdodiya/RestroHub.git
 cd RestroHub
+````
+
+---
+
+### 2️⃣ Database Configuration
+
+Update `application.properties`:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/RestroHub_DB
+spring.datasource.username=postgres
+spring.datasource.password=admin123
 ```
 
-2. **Configure Database**
+---
 
-Edit `application.yml` with your PostgreSQL credentials:
-
-```yaml
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/restrohub
-    username: youruser
-    password: yourpass
-```
-
-3. **Build & Run**
+### 3️⃣ Run the Application
 
 ```bash
 ./gradlew clean build
 ./gradlew bootRun
 ```
 
-API runs at:
+Application will start at:
 
 ```
-http://localhost:8080
+http://localhost:8181/restroly
 ```
 
 ---
 
-## 🧩 API Endpoints (Example)
+## 📘 API Base URL
 
-CRUD endpoints might look like:
-
-| Method | Route            | Description         |
-| ------ | ---------------- | ------------------- |
-| GET    | `/categories`    | List all categories |
-| GET    | `/foods`         | List all foods      |
-| POST   | `/menu`          | Create a new menu   |
-| PUT    | `/food/{id}`     | Update food         |
-| DELETE | `/category/{id}` | Delete category     |
-
-*(Replace with actual routes from your controllers)*
-
----
-
-## 📚 Entity Relationships
-
-### Category
-
-* `categoryId`, `name`, `description`, `isDelete`, `updatedDate`
-* Mapped to foods via `@ManyToMany`
-
-### Food
-
-* Stores food details
-* Linked back to categories
-
-*(See entities for field names and relations)*
-
----
-
-## 🔒 Security
-
-Spring Security is included in dependencies and configured for future auth enhancements.
-
----
-
-## ⚙️ Build Tool
-
-This project uses **Gradle** with:
-
-```gradle
-org.springframework.boot 3.4.1
-Java toolchain → 21
-Lombok
-MapStruct
-PostgreSQL
+```
+/restroly/api/v1
 ```
 
-Lombok annotations require **annotation processing enabled** in your IDE.
+### Example Endpoints
+
+| Method | Endpoint      | Description     |
+| ------ | ------------- | --------------- |
+| GET    | `/foods`      | Get all foods   |
+| GET    | `/foods/{id}` | Get food by ID  |
+| POST   | `/foods`      | Create new food |
+| PUT    | `/foods/{id}` | Update food     |
+| DELETE | `/foods/{id}` | Delete food     |
+
+Full URL Example:
+
+```
+http://localhost:8181/restroly/api/v1/foods/{id}
+```
 
 ---
 
-## 🖼️ Screenshots / Demos
+## 📘 Swagger API Documentation
 
-*(You can add screenshots of API results, Postman collections, or QR scans here.)*
+Swagger UI is available at:
 
----
+```
+http://localhost:8181/restroly/swagger-ui.html
+```
 
-## 🛠️ Best Practices
-
-✔ Implement DTO mappers
-✔ Hide internal IDs with UUIDs
-✔ Use JWT for secure endpoints
-✔ Document APIs with Swagger
+> If Swagger URLs look incorrect, ensure `server.servlet.context-path=/restroly`
+> and OpenAPI `@OpenAPIDefinition(servers = "/restroly")` is configured.
 
 ---
 
-## 📝 Contributing
+## 🛡️ Security
 
-1. Fork it
-2. Create feature branch
+* Spring Security is enabled
+* JWT authentication support planned
+* Role-based authorization can be added easily
+
+---
+
+## 🧪 Testing
+
+Run tests using:
+
+```bash
+./gradlew test
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a feature branch
 3. Commit changes
-4. Raise pull request
-
-We welcome improvements and fixes!
+4. Open a Pull Request
 
 ---
 
-## 📃 License
+## 📄 License
 
-This project is licensed under the **MIT License** — see `LICENSE` for details.
-
----
-
-## ❓ About RestroHub
-
-RestroHub is typically a QR-based restaurant ordering platform that allows guests to scan a code, browse menus, and place orders — ideal for hotels and restaurants aiming for contactless service. ([restrohub.com][1])
+This project is licensed under the **MIT License**.
 
 ---
 
+## 📌 About
 
-┌─────────────────────────────────────────────────────────────┐
-│                    ORDER BUILDER PATTERN                    │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│   CreateOrderRequest                                        │
-│         │                                                   │
-│         ▼                                                   │
-│   ┌─────────────────┐                                       │
-│   │  OrderDirector  │  ◄── Orchestrates the building        │
-│   └────────┬────────┘                                       │
-│            │                                                │
-│     ┌──────┴──────┐                                         │
-│     ▼             ▼                                         │
-│ ┌──────────┐ ┌──────────────┐                               │
-│ │OrderItem │ │ OrderBuilder │                               │
-│ │Builder   │ │              │                               │
-│ └────┬─────┘ └──────┬───────┘                               │
-│      │              │                                       │
-│      ▼              ▼                                       │
-│ ┌──────────┐ ┌──────────────┐                               │
-│ │OrderItem │ │    Order     │  ◄── Final Product            │
-│ │(Product) │ │  (Product)   │                               │
-│ └──────────┘ └──────────────┘                               │
-│                    │                                        │
-│                    ▼                                        │
-│              Save to DB                                     │
-│                    │                                        │
-│                    ▼                                        │
-│           Notify Admin (WebSocket)                          │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+**RestroHub** aims to simplify restaurant operations by enabling **contactless QR-based menu browsing and ordering**, making dining safer and more efficient.

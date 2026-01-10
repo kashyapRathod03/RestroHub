@@ -5,8 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.restrohub.qrmenu.restaurant.entity.Restaurant;
 
+import java.util.Optional;
+
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
-//    boolean existsByRestName(String restName);
+    Optional<Restaurant> findByNameIgnoreCase(String name);
+
+    boolean existsByNameIgnoreCase(String name);
 }
