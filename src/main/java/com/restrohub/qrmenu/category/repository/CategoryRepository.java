@@ -11,6 +11,4 @@ import com.restrohub.qrmenu.category.entity.Category;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
 	List<Category> findByMenu_MenuId(long menuId);
-
-//	List<Category> findByIsDeletedFalse();
 }
