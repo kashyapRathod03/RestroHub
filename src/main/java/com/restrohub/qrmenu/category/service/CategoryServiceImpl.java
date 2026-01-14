@@ -1,33 +1,108 @@
+// com/restrohub/qrmenu/category/service/CategoryServiceImpl.java
 package com.restrohub.qrmenu.category.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.restrohub.qrmenu.category.dto.CategoryDTO;
+import com.restrohub.qrmenu.category.dto.CategoryRequestDTO;
+import com.restrohub.qrmenu.category.dto.CategoryResponseDTO;
 import com.restrohub.qrmenu.category.entity.Category;
 import com.restrohub.qrmenu.category.repository.CategoryRepository;
+import com.restrohub.qrmenu.common.exception.ResourceNotFoundException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
-	@Autowired
-	CategoryRepository  categoryRepository;
+	private final CategoryRepository categoryRepository;
 
-	CategoryDTO categoryDto;
+	/* =======================
+       CREATE CATEGORY
+     ======================= */
+	@Transactional
+	public CategoryResponseDTO createCategory(CategoryRequestDTO requestDTO) {
 
-	@Override
-	public CategoryDTO saveCategory(CategoryDTO categoryDto) {
-		
-		Category dao = categoryRepository.save(categoryDto.dtoToCategory(categoryDto));
-		CategoryDTO pojo = categoryDto.categoryToDto(dao);
-		return pojo;
+		Category category = CategoryDTO.toEntity(
+				CategoryDTO.builder()
+						.name(requestDTO.getName())
+						.description(requestDTO.getDescription())
+						.isDelete(false) // default value
+						.updatedDate(LocalDateTime.now())
+						.build()
+		);
+
+		Category savedCategory = categoryRepository.save(category);
+		return CategoryResponseDTO.fromEntity(savedCategory);
 	}
 
-	@SuppressWarnings("deprecation")
+	/* =======================
+       GET CATEGORY BY ID
+     ======================= */
 	@Override
-	public CategoryDTO getCategory(long id) {
-		
-		CategoryDTO pojo = categoryDto.categoryToDto(categoryRepository.getById(id));
-		return pojo;
+	@Transactional(readOnly = true)
+	public CategoryResponseDTO getCategoryById(Long id) {
+
+		Category category = categoryRepository.findById(id)
+				.orElseThrow(() ->
+						new ResourceNotFoundException("Category", "id", id));
+
+		return CategoryResponseDTO.fromEntity(category);
+	}
+
+	/* =======================
+       GET ALL CATEGORIES
+     ======================= */
+	@Override
+	@Transactional(readOnly = true)
+	public Page<CategoryResponseDTO> getAllCategories(Pageable pageable) {
+
+		return categoryRepository.findAll(pageable)
+				.map(CategoryResponseDTO::fromEntity);
+	}
+
+	/* =======================
+       UPDATE CATEGORY
+     ======================= */
+	@Transactional
+	public CategoryResponseDTO updateCategory(Long id, CategoryRequestDTO requestDTO) {
+
+		Category existingCategory = categoryRepository.findById(id)
+				.orElseThrow(() ->
+						new ResourceNotFoundException("Category", "id", id));
+
+		// Update fields
+		existingCategory.setName(requestDTO.getName());
+		existingCategory.setDescription(requestDTO.getDescription());
+
+		if (requestDTO.getIsDelete() != null) {
+			existingCategory.setIsDelete(requestDTO.getIsDelete());
+		}
+
+		existingCategory.setUpdatedDate(LocalDateTime.now());
+
+		Category updatedCategory = categoryRepository.save(existingCategory);
+		return CategoryResponseDTO.fromEntity(updatedCategory);
+	}
+
+	/* =======================
+       SOFT DELETE CATEGORY
+     ======================= */
+	@Override
+	@Transactional
+	public void deleteCategory(Long id) {
+
+		Category existingCategory = categoryRepository.findById(id)
+				.orElseThrow(() ->
+						new ResourceNotFoundException("Category", "id", id));
+
+		existingCategory.setIsDelete(true);
+		existingCategory.setUpdatedDate(LocalDateTime.now());
+
+		categoryRepository.save(existingCategory);
 	}
 }

@@ -1,10 +1,17 @@
 package com.restrohub.qrmenu.user.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "t_usr_master")
 public class User {
 
@@ -39,71 +46,24 @@ public class User {
     )
     private List<Role> roles;
 
-    // Constructors
-    public User() {}
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
-    // Getters and Setters
-    public long getUserId() {
-        return userId;
-    }
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate;
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getName() {
-        return name;
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedDate = LocalDateTime.now();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @PreUpdate  // this automaticatically update updatedDate when existing entity update
+    protected void onUpdate() {
+        updatedDate = LocalDateTime.now();
     }
 
-    public String getEmail() {
-        return email;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-    
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-    
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-    
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public boolean isLocked() {
-        return isLocked;
-    }
-    
-    public void setLocked(boolean locked) {
-        isLocked = locked;
-    }
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
 }
