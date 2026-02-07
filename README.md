@@ -1,11 +1,8 @@
-# Updated README.md for RestroHub
-
-```markdown
 # 🍽️ RestroHub - Digital Menu & Restaurant Management Platform
 
 <div align="center">
 
-![RestroHub Banner](https://via.placeholder.com/800x200/FF6B35/FFFFFF?text=RestroHub+-+Digital+Menu+Platform)
+![RestroHub Banner]()
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
@@ -83,8 +80,8 @@ RestroHub is an all-in-one digital solution designed specifically for Indian res
 |---------|-------------|--------|
 | 📢 **WhatsApp Status Updates** | Push daily specials & offers to customer WhatsApp Status | 🚧 In Development |
 | 💬 **Order Notifications** | Send order confirmations via WhatsApp | 🚧 In Development |
-| 📋 **Menu Sharing** | Share digital menu link on WhatsApp | 🚧 In Development |
-| 🔔 **Promotional Broadcasts** | Send festival offers to customer list | 📋 Planned |
+<!-- | 📋 **Menu Sharing** | Share digital menu link on WhatsApp | 🚧 In Development | -->
+<!-- | 🔔 **Promotional Broadcasts** | Send festival offers to customer list | 📋 Planned | -->
 
 ---
 
@@ -95,7 +92,7 @@ RestroHub is an all-in-one digital solution designed specifically for Indian res
 | 💰 **UPI Payment Links** | Generate payment links for GPay, PhonePe, Paytm | 🚧 In Development |
 | 📱 **QR Code Payments** | Static & dynamic UPI QR codes | 🚧 In Development |
 | 🧾 **Digital Receipts** | Auto-generate and share payment receipts | 📋 Planned |
-| 📊 **Payment Analytics** | Track payment history and trends | 📋 Planned |
+<!-- | 📊 **Payment Analytics** | Track payment history and trends | 📋 Planned | -->
 
 **Supported Payment Methods:**
 ```
@@ -111,8 +108,8 @@ Bank UPI Apps • WhatsApp Pay
 |---------|-------------|--------|
 | 🤖 **Auto Translation** | AI-powered menu translation | 🚧 In Development |
 | 🔄 **Real-time Sync** | Translations update when menu changes | 🚧 In Development |
-| ✏️ **Manual Override** | Edit AI translations manually | 📋 Planned |
-| 🎯 **Context-Aware** | Food-specific translation accuracy | 📋 Planned |
+<!-- | ✏️ **Manual Override** | Edit AI translations manually | 📋 Planned | -->
+<!-- | 🎯 **Context-Aware** | Food-specific translation accuracy | 📋 Planned | -->
 
 **Supported Languages (25+):**
 
@@ -145,7 +142,7 @@ Bank UPI Apps • WhatsApp Pay
 | 💵 **Price Sync** | Update prices across all platforms | 📋 Planned |
 | ✅ **Availability Toggle** | Mark items available/unavailable everywhere | 📋 Planned |
 | 📦 **Order Aggregation** | View all platform orders in one dashboard | 📋 Planned |
-| 📈 **Cross-Platform Analytics** | Combined insights from all platforms | 📋 Planned |
+<!-- | 📈 **Cross-Platform Analytics** | Combined insights from all platforms | 📋 Planned | -->
 
 ---
 
@@ -159,8 +156,8 @@ Bank UPI Apps • WhatsApp Pay
 | ⭐ **Popular Items** | Highlight bestsellers | 🚧 In Development |
 | 🏷️ **Special Tags** | Veg/Non-veg, Spicy, Chef's Special labels | 🚧 In Development |
 | 📈 **Analytics Dashboard** | Track menu views, popular items | 📋 Planned |
-| 📦 **Inventory Management** | Track stock levels | 📋 Planned |
-| 👥 **Staff Management** | Multi-user access with roles | 📋 Planned |
+<!-- | 📦 **Inventory Management** | Track stock levels | 📋 Planned | -->
+<!-- | 👥 **Staff Management** | Multi-user access with roles | 📋 Planned | -->
 
 ---
 
@@ -168,22 +165,22 @@ Bank UPI Apps • WhatsApp Pay
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        TECH STACK                                │
+│                        TECH STACK                               │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│   Frontend              Backend              Database            │
-│   ────────              ───────              ────────            │
-│   ⚛️ React.js           📦 Node.js           🍃 MongoDB          │
-│   🎨 Tailwind CSS       🚂 Express.js        🔴 Redis            │
-│   ▲ Next.js             📊 GraphQL           🐘 PostgreSQL       │
-│                                                                  │
-│   Services              APIs                 DevOps              │
-│   ────────              ────                 ──────              │
-│   ☁️ AWS S3             📱 WhatsApp API      🐳 Docker           │
-│   💳 Razorpay           🌐 Google Translate  ▲ Vercel            │
-│   📲 Twilio             🍕 Zomato API        📊 GitHub Actions   │
-│                         🛵 Swiggy API                            │
-│                                                                  │
+│                                                                 │
+│   Frontend              Backend              Database           │
+│   ────────              ───────              ────────           │
+│   ⚛️ React.js           JAVA                 🐘 PostgreSQL     │
+│   🎨 Tailwind CSS       Spring Boot          🔴 Redis          │
+│   ▲ TailAdmin           📊 Rest API                            │
+│                                                                 │
+│   Services              APIs                 DevOps             │
+│   ────────              ────                 ──────             │
+│   📲 Twilio            📱 WhatsApp API      🐳 Docker         │
+│                        🌐 AI Translate       ▲ Vercel          │
+│                        🍕 Zomato API        📊 GitHub Actions │
+│                        🛵 Swiggy API                           │
+│                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -194,9 +191,15 @@ Bank UPI Apps • WhatsApp Pay
 ### Prerequisites
 
 ```bash
-node >= 18.0.0
-npm >= 9.0.0
-mongodb >= 6.0
+Make sure you have installed:
+
+Java 21
+Gradle
+PostgreSQL
+Git
+IDE (IntelliJ IDEA recommended)
+Lombok & MapStruct annotation processing enabled
+
 ```
 
 ### Installation
@@ -272,88 +275,6 @@ ZOMATO_API_KEY=your-zomato-key
 ZOMATO_RESTAURANT_ID=your-zomato-restaurant-id
 SWIGGY_API_KEY=your-swiggy-key
 SWIGGY_RESTAURANT_ID=your-swiggy-restaurant-id
-```
-
----
-
-## 📁 Project Structure
-
-```
-RestroHub/
-│
-├── 📂 client/                          # Frontend Application
-│   ├── 📂 components/
-│   │   ├── 📂 menu/
-│   │   │   ├── MenuCard.jsx            # ✅ Implemented
-│   │   │   ├── MenuCategory.jsx        # ✅ Implemented
-│   │   │   ├── MenuSearch.jsx          # ✅ Implemented
-│   │   │   └── QRCodeDisplay.jsx       # ✅ Implemented
-│   │   │
-│   │   ├── 📂 templates/
-│   │   │   ├── ThaliTemplate.jsx       # ✅ Implemented
-│   │   │   ├── CafeTemplate.jsx        # 🚧 In Development
-│   │   │   ├── DhabaTemplate.jsx       # 🚧 In Development
-│   │   │   ├── BakeryTemplate.jsx      # 🚧 In Development
-│   │   │   └── CloudKitchenTemplate.jsx # 🚧 In Development
-│   │   │
-│   │   ├── 📂 payment/
-│   │   │   ├── UPIPayment.jsx          # 🚧 In Development
-│   │   │   └── PaymentStatus.jsx       # 🚧 In Development
-│   │   │
-│   │   └── 📂 shared/
-│   │       ├── Header.jsx              # ✅ Implemented
-│   │       ├── Footer.jsx              # ✅ Implemented
-│   │       └── Loading.jsx             # ✅ Implemented
-│   │
-│   ├── 📂 pages/
-│   │   ├── index.jsx                   # ✅ Implemented
-│   │   ├── menu/[id].jsx               # ✅ Implemented
-│   │   ├── dashboard/                  # ✅ Implemented
-│   │   └── settings/                   # 🚧 In Development
-│   │
-│   └── 📂 styles/
-│       └── globals.css                 # ✅ Implemented
-│
-├── 📂 server/                          # Backend Application
-│   ├── 📂 controllers/
-│   │   ├── menuController.js           # ✅ Implemented
-│   │   ├── authController.js           # ✅ Implemented
-│   │   ├── paymentController.js        # 🚧 In Development
-│   │   └── translationController.js    # 🚧 In Development
-│   │
-│   ├── 📂 models/
-│   │   ├── Restaurant.js               # ✅ Implemented
-│   │   ├── MenuItem.js                 # ✅ Implemented
-│   │   ├── User.js                     # ✅ Implemented
-│   │   └── Order.js                    # 🚧 In Development
-│   │
-│   ├── 📂 routes/
-│   │   ├── menuRoutes.js               # ✅ Implemented
-│   │   ├── authRoutes.js               # ✅ Implemented
-│   │   ├── paymentRoutes.js            # 🚧 In Development
-│   │   └── webhookRoutes.js            # 📋 Planned
-│   │
-│   ├── 📂 services/
-│   │   ├── qrGenerator.js              # ✅ Implemented
-│   │   ├── whatsappService.js          # 🚧 In Development
-│   │   ├── upiService.js               # 🚧 In Development
-│   │   ├── translationService.js       # 🚧 In Development
-│   │   ├── zomatoSync.js               # 📋 Planned
-│   │   └── swiggySync.js               # 📋 Planned
-│   │
-│   └── 📂 middleware/
-│       ├── auth.js                     # ✅ Implemented
-│       └── rateLimiter.js              # ✅ Implemented
-│
-├── 📂 docs/                            # Documentation
-│   ├── API.md                          # API Documentation
-│   ├── DEPLOYMENT.md                   # Deployment Guide
-│   └── CONTRIBUTING.md                 # Contribution Guidelines
-│
-├── 📄 .env.example                     # Environment Variables Template
-├── 📄 docker-compose.yml               # Docker Configuration
-├── 📄 package.json                     # Dependencies
-└── 📄 README.md                        # This File
 ```
 
 ---
@@ -508,19 +429,16 @@ class AggregatorSyncService {
 │                                                                              │
 │   Phase 1 (Q1)              Phase 2 (Q2)             Phase 3 (Q3)            │
 │   ──────────                ──────────               ──────────              │
-│   ✅ QR Menu System         🚧 WhatsApp Integration  📋 Zomato Sync          │
-│   ✅ Basic Website          🚧 UPI Payment Links     📋 Swiggy Sync          │
-│   ✅ Thali Template         🚧 AI Translation        📋 Analytics Dashboard  │
-│   ✅ User Auth              🚧 Premium Templates     📋 Inventory Mgmt       │
-│   ✅ Menu Categories        🚧 Special Tags          📋 Order Management     │
-│   ✅ Mobile Responsive      🚧 Popular Items         📋 Staff Management     │
+│   ✅ QR Menu System         🚧 WhatsApp Integration  📋 Zomato Sync         │
+│   ✅ Basic Website          🚧 UPI Payment Links     📋 Swiggy Sync         │
+│   ✅ Thali Template         🚧 AI Translation        📋 Analytics Dashboard │
+│   ✅ User Auth              🚧 Premium Templates                             │
+│   ✅ Menu Categories        🚧 Special Tags          📋 Order Management    │
+│   ✅ Mobile Responsive      🚧 Popular Items                                │
 │                                                                              │
 │   Phase 4 (Q4)                                                               │
 │   ──────────                                                                 │
 │   📋 Multi-location Support                                                  │
-│   📋 Customer Loyalty Program                                                │
-│   📋 Table Reservation System                                                │
-│   📋 Kitchen Display System                                                  │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -537,7 +455,6 @@ class AggregatorSyncService {
 | 🟡 P2 | Premium Templates | Better UX | 🚧 In Progress |
 | 🟡 P2 | Zomato/Swiggy Sync | Efficiency | 📋 Planned |
 | 🟢 P3 | Analytics Dashboard | Insights | 📋 Planned |
-| 🟢 P3 | Inventory Management | Operations | 📋 Planned |
 
 ---
 
@@ -547,29 +464,36 @@ We love contributions! Here's how you can help build RestroHub:
 
 ### 🎯 Priority Contributions Needed
 
-| Feature | Difficulty | Impact |
-|---------|------------|--------|
-| WhatsApp Business API Integration | Medium | 🔥 High |
-| UPI Payment Service | Medium | 🔥 High |
-| Google Translate Integration | Easy | 🔥 High |
-| Café Template Design | Easy | Medium |
-| Dhaba Template Design | Easy | Medium |
-| Zomato API Integration | Hard | 🔥 High |
-| Swiggy API Integration | Hard | 🔥 High |
+| Feature                           | Difficulty | Impact   |
+|-----------------------------------|------------|----------|
+| WhatsApp Business API Integration | Medium     |  High    |
+| UPI Payment Service               | Medium     |  High    |
+| AI Translate Integration          | Easy       |  High    |
+| Café Template Design              | Easy       |  Medium  |
+| Dhaba Template Design             | Easy       |  Medium  |
+| Zomato API Integration            | Hard       |  High    |
+| Swiggy API Integration            | Hard       |  High    |
 
-### How to Contribute
+
+---
+
+### 🚀 How to Contribu  te
 
 ```bash
 # 1. Fork the repository
 # 2. Clone your fork
-git clone https://github.com/YOUR_USERNAME/RestroHub.git
+git clone https://github.com/rdodiya/RestroHub.git
 
 # 3. Create a feature branch
 git checkout -b feature/whatsapp-integration
 
 # 4. Make your changes
-# 5. Run tests
-npm test
+# 5. Run locally and test it
+
+./gradlew clean build
+./gradlew bootRun
+Application will start at: http://localhost:8181/restroly
+Example : http://localhost:8181/restroly/api/v1/foods/{id}
 
 # 6. Commit with conventional commits
 git commit -m "feat: add WhatsApp status update service"
@@ -579,6 +503,17 @@ git push origin feature/whatsapp-integration
 
 # 8. Open a Pull Request
 ```
+
+## 📘 Swagger API Documentation
+
+Swagger UI is available at:
+
+```
+http://localhost:8181/restroly/swagger-ui.html
+```
+
+> If Swagger URLs look incorrect, ensure `server.servlet.context-path=/restroly`
+> and OpenAPI `@OpenAPIDefinition(servers = "/restroly")` is configured.
 
 ### Commit Convention
 
@@ -593,7 +528,7 @@ chore:    Maintenance tasks
 ```
 
 ---
-
+<!-- 
 ## 🧪 Testing
 
 ```bash
@@ -607,7 +542,8 @@ npm run test:coverage
 npm test -- --grep "MenuService"
 ```
 
----
+--- 
+-->
 
 ## 📦 Deployment
 
@@ -643,188 +579,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Next.js](https://nextjs.org/) - React Framework
 - [Tailwind CSS](https://tailwindcss.com/) - Styling
-- [MongoDB](https://www.mongodb.com/) - Database
+- [PostGres](https://www.mongodb.com/) - Database
 - [QRCode.js](https://github.com/soldair/node-qrcode) - QR Generation
+
+Thanks to all contributors
+Community feedback and suggestions
+Open-source libraries and tools used
 
 ---
 
 ## 📞 Contact & Support
+Project Owner: Raj Dodiya
 
-<div
+GitHub: [rdodiya](https://github.com/rdodiya) - RestroHub@rdodiya
+Repository: - [RestroHub](https://github.com/rdodiya/RestroHub) - RestroHub
 
-# 🧭 RestroHub
+## Status: 🚀 Active Development
 
-**RestroHub** is a Spring Boot–based backend application that provides REST APIs for a **Restaurant QR Menu & Ordering System**.  
-It enables restaurants to manage menus, categories, and food items for a **contactless QR-based dining experience**.
-
----
-
-## 🚀 Features
-
-- 🍽️ Food & Category Management
-- 📱 QR-based Menu Support
-- 🧩 Modular & Scalable Architecture
-- 🗄️ PostgreSQL Integration
-- 🔄 DTO Mapping using MapStruct
-- 🛡️ Validation & Global Exception Handling
-- 📘 Swagger / OpenAPI Documentation
-- 🔐 Spring Security ready (JWT support planned)
-
----
-
-## 🏗️ Tech Stack
-
-| Layer        | Technology |
-|-------------|-----------|
-| Language     | Java 21 |
-| Framework    | Spring Boot |
-| ORM          | Spring Data JPA |
-| Database     | PostgreSQL |
-| Mapper       | MapStruct |
-| Security     | Spring Security |
-| Build Tool   | Gradle |
-| API Docs     | SpringDoc OpenAPI |
-| Validation   | Jakarta Validation |
-
----
-
-## 📁 Project Structure
-```
-src/main/java/com/restrohub/qrmenu
-├── category
-├── food
-├── order
-├── common
-├── config
-└── utils
-
-````
-
----
-
-## ⚙️ Prerequisites
-
-Make sure you have installed:
-
-- Java 21
-- Gradle
-- PostgreSQL
-- Git
-- IDE (IntelliJ IDEA recommended)
-- Lombok & MapStruct annotation processing enabled
-
----
-
-## 🚀 Getting Started
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/rdodiya/RestroHub.git
-cd RestroHub
-````
-
----
-
-### 2️⃣ Database Configuration
-
-Update `application.properties`:
-
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/RestroHub_DB
-spring.datasource.username=postgres
-spring.datasource.password=admin123
-```
-
----
-
-### 3️⃣ Run the Application
-
-```bash
-./gradlew clean build
-./gradlew bootRun
-```
-
-Application will start at:
-
-```
-http://localhost:8181/restroly
-```
-
----
-
-## 📘 API Base URL
-
-```
-/restroly/api/v1
-```
-
-### Example Endpoints
-
-| Method | Endpoint      | Description     |
-| ------ | ------------- | --------------- |
-| GET    | `/foods`      | Get all foods   |
-| GET    | `/foods/{id}` | Get food by ID  |
-| POST   | `/foods`      | Create new food |
-| PUT    | `/foods/{id}` | Update food     |
-| DELETE | `/foods/{id}` | Delete food     |
-
-Full URL Example:
-
-```
-http://localhost:8181/restroly/api/v1/foods/{id}
-```
-
----
-
-## 📘 Swagger API Documentation
-
-Swagger UI is available at:
-
-```
-http://localhost:8181/restroly/swagger-ui.html
-```
-
-> If Swagger URLs look incorrect, ensure `server.servlet.context-path=/restroly`
-> and OpenAPI `@OpenAPIDefinition(servers = "/restroly")` is configured.
-
----
-
-## 🛡️ Security
-
-* Spring Security is enabled
-* JWT authentication support planned
-* Role-based authorization can be added easily
-
----
-
-## 🧪 Testing
-
-Run tests using:
-
-```bash
-./gradlew test
-```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit changes
-4. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
-## 📌 About
-
-**RestroHub** aims to simplify restaurant operations by enabling **contactless QR-based menu browsing and ordering**, making dining safer and more efficient.
+RestroHub is continuously evolving. Check back regularly for updates and new features!
