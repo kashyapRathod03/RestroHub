@@ -2,24 +2,53 @@ package com.restroly.qrmenu.admin.dashboard.service;
 
 
 import com.restroly.qrmenu.admin.dashboard.dto.DashboardStatDTO;
+import com.restroly.qrmenu.common.enums.OrderStatus;
+import com.restroly.qrmenu.order.repository.OrderRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 @Service
+@RequiredArgsConstructor
 public class DashboardServiceImpl implements DashboardService {
+
+    private final OrderRepository orderRepository;
 
     @Override
     public List<DashboardStatDTO> getDashboardStats() {
 
-        // 🔥 Later → Replace with DB queries / analytics logic
+        // Today's Date Range
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay();
+        LocalDateTime endOfDay = today.atTime(23, 59, 59);
+
+        // Today's Revenue
+        BigDecimal todayRevenue = orderRepository.getTodayRevenue(startOfDay, endOfDay);
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+        String formattedRevenue = formatter.format(todayRevenue);
+
+        // Live Orders (Active statuses)
+        List<OrderStatus> activeStatuses = List.of(
+                OrderStatus.PENDING,
+                OrderStatus.CONFIRMED,
+                OrderStatus.PREPARING
+        );
+
+        long liveOrders = orderRepository.countByStatusIn(activeStatuses);
 
         return List.of(
                 new DashboardStatDTO(
                         "Today's Revenue",
-                        "₹45,230",
-                        "-24%",
-                        false,
+                        formattedRevenue,
+                        null,
+                        null,
                         null,
                         "revenue",
                         "green",
@@ -28,7 +57,7 @@ public class DashboardServiceImpl implements DashboardService {
                 ),
                 new DashboardStatDTO(
                         "Live Orders",
-                        "12",
+                        String.valueOf(liveOrders),
                         null,
                         null,
                         "active",
@@ -36,29 +65,8 @@ public class DashboardServiceImpl implements DashboardService {
                         "orange",
                         true,
                         null
-                ),
-                new DashboardStatDTO(
-                        "WhatsApp Messages",
-                        "156/1000",
-                        null,
-                        null,
-                        null,
-                        "messages",
-                        "emerald",
-                        null,
-                        15.6
-                ),
-                new DashboardStatDTO(
-                        "UPI Success",
-                        "89%",
-                        null,
-                        null,
-                        "(78/89)",
-                        "payments",
-                        "purple",
-                        null,
-                        null
                 )
         );
     }
+
 }

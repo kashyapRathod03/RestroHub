@@ -21,6 +21,7 @@ import com.restroly.qrmenu.table.entity.Tables;
 import com.restroly.qrmenu.table.repository.TablesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,15 +30,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 @Transactional
 public class OrderServiceImpl implements OrderService {
 
-private final OrderRepository orderRepository = null;
-	private final BranchRepository branchRepository = null;
-	private final TablesRepository tableRepository = null;
-	private final FoodRepository foodRepository = null;
+	@Autowired
+	private OrderRepository orderRepository;
+	@Autowired
+	private BranchRepository branchRepository;
+	@Autowired
+	private TablesRepository tableRepository;
+	@Autowired
+	private FoodRepository foodRepository;
+
 	private final OrderDirector orderDirector = new OrderDirector();
 	private final OrderMapper orderMapper = new OrderMapper();
 	private final OrderNotificationService notificationService = new OrderNotificationService();
