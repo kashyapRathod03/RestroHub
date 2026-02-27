@@ -1,16 +1,16 @@
-# 🍽️ RestroHub - Digital Menu & Restaurant Management Platform
+# 🍽️ Restroly - Digital Menu & Restaurant Management Platform
 
 <div align="center">
 
-![RestroHub Banner]()
+![Restroly Banner]()
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Made in India](https://img.shields.io/badge/Made%20in-India-orange.svg)](https://github.com/rdodiya/RestroHub)
+[![Made in India](https://img.shields.io/badge/Made%20in-India-orange.svg)](https://github.com/rdodiya/Restroly)
 
 **Empowering Indian restaurants to go digital — Simple, Fast & Powerful!**
 
-[Live Demo](https://restrohub.demo.com) · [Report Bug](https://github.com/rdodiya/RestroHub/issues) · [Request Feature](https://github.com/rdodiya/RestroHub/issues)
+[Live Demo](https://Restroly.demo.com) · [Report Bug](https://github.com/rdodiya/Restroly/issues) · [Request Feature](https://github.com/rdodiya/Restroly/issues)
 
 </div>
 
@@ -31,9 +31,9 @@
 
 ## 🎯 About
 
-RestroHub is an all-in-one digital solution designed specifically for Indian restaurants. From street-side dhabas to fine dining establishments, we help restaurants create digital menus, accept payments, sync with delivery platforms, and manage their online presence.
+Restroly is an all-in-one digital solution designed specifically for Indian restaurants. From street-side dhabas to fine dining establishments, we help restaurants create digital menus, accept payments, sync with delivery platforms, and manage their online presence.
 
-### Why RestroHub?
+### Why Restroly?
 
 | Problem | Our Solution |
 |---------|--------------|
@@ -206,10 +206,10 @@ Lombok & MapStruct annotation processing enabled
 
 ```bash
 # Clone the repository
-git clone https://github.com/rdodiya/RestroHub.git
+git clone https://github.com/rdodiya/Restroly.git
 
 # Navigate to project directory
-cd RestroHub
+cd Restroly
 
 # Install dependencies
 npm install
@@ -233,7 +233,7 @@ PORT=3000
 # ===================
 # Database
 # ===================
-MONGODB_URI=mongodb://localhost:27017/restrohub
+MONGODB_URI=mongodb://localhost:27017/Restroly
 REDIS_URL=redis://localhost:6379
 
 # ===================
@@ -248,7 +248,7 @@ NEXTAUTH_SECRET=your-nextauth-secret
 # ===================
 AWS_ACCESS_KEY_ID=your-aws-key
 AWS_SECRET_ACCESS_KEY=your-aws-secret
-AWS_S3_BUCKET=restrohub-uploads
+AWS_S3_BUCKET=Restroly-uploads
 
 # ===================
 # Payment Integration
@@ -460,7 +460,7 @@ class AggregatorSyncService {
 
 ## 🤝 Contributing
 
-We love contributions! Here's how you can help build RestroHub:
+We love contributions! Here's how you can help build Restroly:
 
 ### 🎯 Priority Contributions Needed
 
@@ -482,7 +482,7 @@ We love contributions! Here's how you can help build RestroHub:
 ```bash
 # 1. Fork the repository
 # 2. Clone your fork
-git clone https://github.com/rdodiya/RestroHub.git
+git clone https://github.com/rdodiya/Restroly.git
 
 # 3. Create a feature branch
 git checkout -b feature/whatsapp-integration
@@ -591,9 +591,9 @@ Open-source libraries and tools used
 ## 📞 Contact & Support
 Project Owner: Raj Dodiya
 
-GitHub: [rdodiya](https://github.com/rdodiya) - RestroHub@rdodiya
-Repository: - [RestroHub](https://github.com/rdodiya/RestroHub) - RestroHub
+GitHub: [rdodiya](https://github.com/rdodiya) - Restroly@rdodiya
+Repository: - [Restroly](https://github.com/rdodiya/Restroly) - Restroly
 
 ## Status: 🚀 Active Development
 
-RestroHub is continuously evolving. Check back regularly for updates and new features!
+Restroly is continuously evolving. Check back regularly for updates and new features!

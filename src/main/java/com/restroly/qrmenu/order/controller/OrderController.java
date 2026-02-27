@@ -1,4 +1,4 @@
-//com/restrohub/qrmenu/order/controller/OrderController.java
+//com/Restroly/qrmenu/order/controller/OrderController.java
 package com.restroly.qrmenu.order.controller;
 
 import java.util.List;
@@ -22,8 +22,10 @@ import com.restroly.qrmenu.order.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import static com.restroly.qrmenu.common.util.ApiConstants.*;
+
 @RestController
-@RequestMapping("/api/v1/orders")
+@RequestMapping(SECURE_API_VERSION+"/orders")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class OrderController {

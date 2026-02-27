@@ -1,9 +1,9 @@
 
-# 📘 Project Details — RestroHub
+# 📘 Project Details — Restroly
 
 ## 🧭 Overview
 
-**RestroHub** is a backend application built using **Spring Boot** to support a **QR-based restaurant menu and ordering system**.  
+**Restroly** is a backend application built using **Spring Boot** to support a **QR-based restaurant menu and ordering system**.  
 It provides RESTful APIs to manage food items, categories, and future order workflows, enabling a modern **contactless dining experience**.
 
 The project is designed to be **modular, scalable, and production-ready**, serving as a foundation for mobile apps, web dashboards, or POS integrations.
@@ -211,7 +211,7 @@ This project is licensed under the **MIT License**.
 
 ## 🧡 Conclusion
 
-**RestroHub** is a solid, extensible backend foundation for modern restaurant systems.
+**Restroly** is a solid, extensible backend foundation for modern restaurant systems.
 It emphasizes clean architecture, maintainability, and real-world scalability.
 
 ---

@@ -3,7 +3,6 @@ package com.restroly.qrmenu.restaurant.controller;
 
 import com.restroly.qrmenu.common.exception.ErrorResponse;
 import com.restroly.qrmenu.common.util.ApiConstants;
-import com.restroly.qrmenu.restaurant.dto.*;
 import com.restroly.qrmenu.restaurant.dto.RestaurantRequestDTO;
 import com.restroly.qrmenu.restaurant.dto.RestaurantResponseDTO;
 import com.restroly.qrmenu.restaurant.dto.RestaurantUpdateDTO;
@@ -30,8 +29,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
+import static com.restroly.qrmenu.common.util.ApiConstants.SECURE_API_VERSION;
+
 @RestController
-@RequestMapping(ApiConstants.API_V1 +"/restaurants")
+@RequestMapping(SECURE_API_VERSION +"/restaurants")
 @RequiredArgsConstructor
 @Slf4j
 @Validated
@@ -65,7 +66,7 @@ public class RestaurantController {
         log.info("REST request to create restaurant: {}", requestDTO.getName());
         RestaurantResponseDTO response = restaurantService.createRestaurant(requestDTO);
 
-        URI location = URI.create("/"+ApiConstants.APP_NAME+ApiConstants.API_V1 +"/restaurant/" + response.getRestId());
+        URI location = URI.create("/"+ApiConstants.APP_NAME+SECURE_API_VERSION +"/restaurant/" + response.getRestId());
         return ResponseEntity.created(location).body(response);
     }
 

@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/food/dto/FoodUpdateDTO.java
+// src/main/java/com/Restroly/qrmenu/food/dto/FoodUpdateDTO.java
 package com.restroly.qrmenu.food.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;

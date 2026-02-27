@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.restroly.qrmenu.common.util.ApiConstants.SECURE_API_VERSION;
+
 @RestController
-@RequestMapping(ApiConstants.API_V1+"/admin/sites/{siteId}/sections")
+@RequestMapping(SECURE_API_VERSION+"/admin/sites/{siteId}/sections")
 @RequiredArgsConstructor
 @Tag(name = "Admin Section Management", description = "APIs for managing site sections")
 public class AdminSectionController {

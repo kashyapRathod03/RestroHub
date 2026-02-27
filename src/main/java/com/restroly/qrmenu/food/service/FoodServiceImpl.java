@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/food/service/impl/FoodServiceImpl.java
+// src/main/java/com/Restroly/qrmenu/food/service/impl/FoodServiceImpl.java
 package com.restroly.qrmenu.food.service;
 
 import com.restroly.qrmenu.common.exception.ResourceAlreadyExistsException;

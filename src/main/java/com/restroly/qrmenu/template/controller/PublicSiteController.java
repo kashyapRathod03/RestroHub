@@ -10,8 +10,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static com.restroly.qrmenu.common.util.ApiConstants.PUBLIC_API_VERSION;
+
 @RestController
-@RequestMapping(ApiConstants.PUBLIC +ApiConstants.API_V1+"/sites")
+@RequestMapping(PUBLIC_API_VERSION +"/sites")
 @RequiredArgsConstructor
 @Tag(name = "Public Site API", description = "Public APIs for fetching site data")
 public class PublicSiteController {

@@ -1,4 +1,4 @@
-package com.restrohub.qrmenu.admin.dashboard.dto;
+package com.restroly.qrmenu.admin.dashboard.dto;
 
 import lombok.*;
 

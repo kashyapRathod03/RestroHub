@@ -1,4 +1,4 @@
-// com/restrohub/qrmenu/order/entity/OrderItem.java
+// com/Restroly/qrmenu/order/entity/OrderItem.java
 package com.restroly.qrmenu.order.entity;
 
 import com.restroly.qrmenu.food.entity.Food;

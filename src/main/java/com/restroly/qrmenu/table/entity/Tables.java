@@ -1,4 +1,4 @@
-// com/restrohub/qrmenu/table/entity/TableMaster.java
+// com/Restroly/qrmenu/table/entity/TableMaster.java
 package com.restroly.qrmenu.table.entity;
 
 import com.restroly.qrmenu.branch.entity.Branch;

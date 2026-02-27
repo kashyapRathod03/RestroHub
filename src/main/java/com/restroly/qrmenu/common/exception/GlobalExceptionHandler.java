@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/common/exception/GlobalExceptionHandler.java
+// src/main/java/com/Restroly/qrmenu/common/exception/GlobalExceptionHandler.java
 package com.restroly.qrmenu.common.exception;
 
 import jakarta.servlet.http.HttpServletRequest;

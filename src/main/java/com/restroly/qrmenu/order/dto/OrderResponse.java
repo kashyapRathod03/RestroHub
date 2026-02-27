@@ -1,4 +1,4 @@
-// com/restrohub/qrmenu/order/dto/OrderResponse.java
+// com/Restroly/qrmenu/order/dto/OrderResponse.java
 package com.restroly.qrmenu.order.dto;
 
 import com.restroly.qrmenu.common.enums.OrderStatus;

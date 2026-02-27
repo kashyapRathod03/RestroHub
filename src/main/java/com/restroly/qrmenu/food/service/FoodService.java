@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/food/service/FoodService.java
+// src/main/java/com/Restroly/qrmenu/food/service/FoodService.java
 package com.restroly.qrmenu.food.service;
 
 import com.restroly.qrmenu.common.generic.PageResponseDTO;
