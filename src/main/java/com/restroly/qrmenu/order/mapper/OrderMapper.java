@@ -1,4 +1,4 @@
-//com/restrohub/qrmenu/order/mapper/OrderMapper.java
+//com/Restroly/qrmenu/order/mapper/OrderMapper.java
 package com.restroly.qrmenu.order.mapper;
 
 import java.util.List;

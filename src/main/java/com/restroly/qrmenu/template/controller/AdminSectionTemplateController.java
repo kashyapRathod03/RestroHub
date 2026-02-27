@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.restroly.qrmenu.common.util.ApiConstants.SECURE_API_VERSION;
+
 @RestController
-@RequestMapping(ApiConstants.API_V1+ "/admin/section-templates")
+@RequestMapping(SECURE_API_VERSION+ "/admin/section-templates")
 @RequiredArgsConstructor
 @Tag(name = "Admin Section Template Management", description = "APIs for managing section templates")
 public class AdminSectionTemplateController {

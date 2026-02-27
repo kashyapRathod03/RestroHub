@@ -1,7 +1,7 @@
 
-# 🤝 Contributing to RestroHub
+# 🤝 Contributing to Restroly
 
-Thank you for taking the time to contribute to **RestroHub**!  
+Thank you for taking the time to contribute to **Restroly**!  
 Contributions are welcome and appreciated — whether they are bug fixes, new features, documentation improvements, or suggestions.
 
 ---
@@ -31,8 +31,8 @@ Click the **Fork** button on GitHub to create your own copy of the repository.
 ### 2️⃣ Clone Your Fork
 
 ```bash
-git clone https://github.com/<your-username>/RestroHub.git
-cd RestroHub
+git clone https://github.com/<your-username>/Restroly.git
+cd Restroly
 ````
 
 ---
@@ -99,7 +99,7 @@ git push origin feature/your-feature-name
 
 ### 8️⃣ Open a Pull Request
 
-* Go to the original **RestroHub** repository
+* Go to the original **Restroly** repository
 * Click **New Pull Request**
 * Select your branch
 * Provide a clear description of:
@@ -162,6 +162,6 @@ By contributing to this project, you agree that your contributions will be licen
 
 ## 🙌 Thank You
 
-Your time and effort help improve **RestroHub** for everyone.
+Your time and effort help improve **Restroly** for everyone.
 Happy coding! 🚀
 

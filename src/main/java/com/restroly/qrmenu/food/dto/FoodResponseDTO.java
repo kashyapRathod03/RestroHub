@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/food/dto/FoodResponseDTO.java
+// src/main/java/com/Restroly/qrmenu/food/dto/FoodResponseDTO.java
 package com.restroly.qrmenu.food.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;

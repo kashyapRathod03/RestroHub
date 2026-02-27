@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/common/exception/ErrorResponse.java
+// src/main/java/com/Restroly/qrmenu/common/exception/ErrorResponse.java
 package com.restroly.qrmenu.common.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;

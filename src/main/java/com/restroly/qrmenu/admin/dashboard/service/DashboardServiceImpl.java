@@ -1,7 +1,7 @@
-package com.restrohub.qrmenu.admin.dashboard.service;
+package com.restroly.qrmenu.admin.dashboard.service;
 
 
-import com.restrohub.qrmenu.admin.dashboard.dto.DashboardStatDTO;
+import com.restroly.qrmenu.admin.dashboard.dto.DashboardStatDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

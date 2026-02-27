@@ -47,6 +47,7 @@ public class SecurityConfig {
 			"/api/v1/restaurants/**"
 	};
 
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
@@ -57,9 +58,9 @@ public class SecurityConfig {
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers(PUBLIC_URLS).permitAll()
 						.requestMatchers(HttpMethod.GET, PUBLIC_GET_URLS).permitAll()
-						.requestMatchers(HttpMethod.POST, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
-						.requestMatchers(HttpMethod.PUT, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
-						.requestMatchers(HttpMethod.DELETE, "/v1/foods/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
+						.requestMatchers(HttpMethod.POST, "/secure/api/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
+						.requestMatchers(HttpMethod.PUT, "/secure/api/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
+						.requestMatchers(HttpMethod.DELETE, "/secure/api/**").hasAnyRole("ADMIN", "RESTAURANT_OWNER")
 						// All other requests require authentication
 						.anyRequest().authenticated()
 				)

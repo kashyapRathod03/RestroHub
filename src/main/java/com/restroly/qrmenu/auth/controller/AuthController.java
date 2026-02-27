@@ -22,8 +22,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import static com.restroly.qrmenu.common.util.ApiConstants.PUBLIC_API_VERSION;
+
 @RestController
-@RequestMapping(ApiConstants.API_V1 + "/auth")
+@RequestMapping(PUBLIC_API_VERSION + "/auth")
 @RequiredArgsConstructor
 @Slf4j
 @Tag(name = "Authentication", description = "APIs for user authentication and token management")

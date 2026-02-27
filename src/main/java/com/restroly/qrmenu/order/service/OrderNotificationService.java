@@ -1,4 +1,4 @@
-//com/restrohub/qrmenu/order/service/OrderNotificationService.java
+//com/Restroly/qrmenu/order/service/OrderNotificationService.java
 package com.restroly.qrmenu.order.service;
 
 import com.restroly.qrmenu.order.dto.OrderResponse;

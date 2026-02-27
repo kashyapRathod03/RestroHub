@@ -1,4 +1,4 @@
-//com/restrohub/qrmenu/common/config/WebSocketConfig.java
+//com/Restroly/qrmenu/common/config/WebSocketConfig.java
 package com.restroly.qrmenu.common.config;
 
 import org.springframework.context.annotation.Configuration;

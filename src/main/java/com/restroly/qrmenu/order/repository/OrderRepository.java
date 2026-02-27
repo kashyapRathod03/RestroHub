@@ -1,4 +1,4 @@
-// com/restrohub/qrmenu/order/repository/OrderRepository.java
+// com/Restroly/qrmenu/order/repository/OrderRepository.java
 package com.restroly.qrmenu.order.repository;
 
 import com.restroly.qrmenu.common.enums.OrderStatus;

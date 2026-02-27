@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/common/exception/ValidationException.java
+// src/main/java/com/Restroly/qrmenu/common/exception/ValidationException.java
 package com.restroly.qrmenu.common.exception;
 
 import lombok.Getter;

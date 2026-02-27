@@ -20,7 +20,7 @@ import com.restroly.qrmenu.category.dto.CategoryDTO;
 import com.restroly.qrmenu.category.service.CategoryService;
 
 @RestController
-@RequestMapping("/api/v1/categories")
+@RequestMapping("/secure/api/v1/categories")
 @RequiredArgsConstructor
 public class CategoryController {
 

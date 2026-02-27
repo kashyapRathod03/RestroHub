@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/food/controller/FoodController.java
+// src/main/java/com/Restroly/qrmenu/food/controller/FoodController.java
 package com.restroly.qrmenu.food.controller;
 
 import com.restroly.qrmenu.common.exception.ErrorResponse;
@@ -34,8 +34,10 @@ import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
 
+import static com.restroly.qrmenu.common.util.ApiConstants.SECURE_API_VERSION;
+
 @RestController
-@RequestMapping(ApiConstants.API_V1 +"/foods")
+@RequestMapping(SECURE_API_VERSION +"/foods")
 @RequiredArgsConstructor
 @Slf4j
 @Validated
@@ -68,7 +70,7 @@ public class FoodController {
         log.info("REST request to create food item: {}", requestDTO.getName());
         FoodResponseDTO response = foodService.createFood(requestDTO);
 
-        URI location = URI.create("/"+ApiConstants.APP_NAME+ApiConstants.API_V1 +"/foods/" + response.getFoodId());
+        URI location = URI.create("/"+ApiConstants.APP_NAME+SECURE_API_VERSION +"/foods/" + response.getFoodId());
         return ResponseEntity.created(location).body(response);
     }
 

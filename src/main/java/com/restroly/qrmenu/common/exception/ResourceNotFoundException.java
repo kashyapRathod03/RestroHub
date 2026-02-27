@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/common/exception/ResourceNotFoundException.java
+// src/main/java/com/Restroly/qrmenu/common/exception/ResourceNotFoundException.java
 package com.restroly.qrmenu.common.exception;
 
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/common/util/Constants.java
+// src/main/java/com/Restroly/qrmenu/common/util/Constants.java
 package com.restroly.qrmenu.common.util;
 
 public final class Constants {

@@ -1,4 +1,4 @@
-// src/main/java/com/restrohub/qrmenu/common/exception/ResourceAlreadyExistsException.java
+// src/main/java/com/Restroly/qrmenu/common/exception/ResourceAlreadyExistsException.java
 package com.restroly.qrmenu.common.exception;
 
 import org.springframework.http.HttpStatus;
