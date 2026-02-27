@@ -97,7 +97,7 @@
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="ASYNC_FILE"/>
         </root>
-        <logger name="com.restrohub" level="DEBUG"/>
+        <logger name="com.restroly" level="DEBUG"/>
         <logger name="org.springframework.web" level="DEBUG"/>
         <logger name="org.hibernate.SQL" level="DEBUG"/>
     </springProfile>
@@ -107,7 +107,7 @@
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
         </root>
-        <logger name="com.restrohub" level="DEBUG"/>
+        <logger name="com.restroly" level="DEBUG"/>
     </springProfile>
 
     <!-- Production Profile -->
@@ -117,7 +117,7 @@
             <appender-ref ref="ASYNC_FILE"/>
             <appender-ref ref="ERROR_FILE"/>
         </root>
-        <logger name="com.restrohub" level="INFO"/>
+        <logger name="com.restroly" level="INFO"/>
         <logger name="org.springframework.security" level="WARN"/>
     </springProfile>
 
