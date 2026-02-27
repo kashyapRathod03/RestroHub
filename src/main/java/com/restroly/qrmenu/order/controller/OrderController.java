@@ -3,6 +3,7 @@ package com.restroly.qrmenu.order.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,10 +27,10 @@ import static com.restroly.qrmenu.common.util.ApiConstants.*;
 
 @RestController
 @RequestMapping(SECURE_API_VERSION+"/orders")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class OrderController {
 
+	@Autowired
 	private final OrderService orderService = null;
 
 //private final OrderService orderService;
