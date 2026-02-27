@@ -1,48 +1,63 @@
+// com/restroly/qrmenu/category/controller/CategoryController.java
+
 package com.restroly.qrmenu.category.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.restroly.qrmenu.category.dto.CategoryRequestDTO;
+import com.restroly.qrmenu.category.dto.CategoryResponseDTO;
+import com.restroly.qrmenu.category.service.CategoryService;
+import com.restroly.qrmenu.common.dto.ApiResponse;
+import com.restroly.qrmenu.common.dto.PagedResponse;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.restroly.qrmenu.category.dto.CategoryDTO;
 import com.restroly.qrmenu.category.service.CategoryService;
 
-@RequestMapping("/public/category")
 @RestController
+@RequestMapping("/api/v1/categories")
+@RequiredArgsConstructor
 public class CategoryController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
-
-	@Autowired
-	private CategoryService categoryService;
-
-	@GetMapping("/getCategory")
-	public ResponseEntity<CategoryDTO> getCategory(@RequestParam long id) {
-		try {
-			CategoryDTO category = categoryService.getCategory(id);
-			return ResponseEntity.ok(category);
-		} catch (Exception e) {
-			LOGGER.error("Error fetching category with id: " + id, e);
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
+	private final CategoryService categoryService;
 
 	@PostMapping("/addCategory")
-	public ResponseEntity<CategoryDTO> addCategory(@RequestBody CategoryDTO category) {
-		try {
-			CategoryDTO pojo = categoryService.saveCategory(category);
-			return ResponseEntity.ok(pojo);
-		} catch (Exception e) {
-			LOGGER.error("Error saving category: ", e);
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
+	public ResponseEntity<ApiResponse<CategoryResponseDTO>> createCategory(
+			@Valid @RequestBody CategoryRequestDTO requestDTO) {
+		CategoryResponseDTO createdCategory = categoryService.createCategory(requestDTO);
+		return new ResponseEntity<>(ApiResponse.success(createdCategory, "Category created successfully"), HttpStatus.CREATED);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<ApiResponse<CategoryResponseDTO>> getCategoryById(@PathVariable Long id) {
+		CategoryResponseDTO category = categoryService.getCategoryById(id);
+		return ResponseEntity.ok(ApiResponse.success(category));
+	}
+
+	@GetMapping("/getallcategories")
+	public ResponseEntity<ApiResponse<PagedResponse<CategoryResponseDTO>>> getAllCategories(
+			@PageableDefault(page = 0, size = 10, sort = "name") Pageable pageable) {
+		Page<CategoryResponseDTO> categoryPage = categoryService.getAllCategories(pageable);
+		PagedResponse<CategoryResponseDTO> pagedResponse = PagedResponse.from(categoryPage);
+		return ResponseEntity.ok(ApiResponse.success(pagedResponse, "Categories retrieved successfully"));
+	}
+
+	@PutMapping("/update/{id}")
+	public ResponseEntity<ApiResponse<CategoryResponseDTO>> updateCategory(
+			@PathVariable Long id,
+			@Valid @RequestBody CategoryRequestDTO requestDTO) {
+		CategoryResponseDTO updatedCategory = categoryService.updateCategory(id, requestDTO);
+		return ResponseEntity.ok(ApiResponse.success(updatedCategory, "Category updated successfully"));
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<ApiResponse<Void>> deleteCategory(@PathVariable Long id) {
+		categoryService.deleteCategory(id);
+		return ResponseEntity.ok(ApiResponse.success(null, "Category deleted (soft-deleted) successfully"));
 	}
 }

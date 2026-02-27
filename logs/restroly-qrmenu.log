@@ -1,0 +1,89 @@
+2026-02-27 12:35:59.496 INFO  [background-preinit] [] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-02-27 12:35:59.539 INFO  [restartedMain] [] c.r.qrmenu.RestaurantApplication - Starting RestaurantApplication using Java 21.0.3 with PID 55240 (D:\projects\Restroly\build\classes\java\main started by rdodiya in D:\projects\Restroly)
+2026-02-27 12:35:59.539 DEBUG [restartedMain] [] c.r.qrmenu.RestaurantApplication - Running with Spring Boot v3.2.6, Spring v6.1.8
+2026-02-27 12:35:59.539 INFO  [restartedMain] [] c.r.qrmenu.RestaurantApplication - The following 1 profile is active: "dev"
+2026-02-27 12:35:59.590 INFO  [restartedMain] [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-02-27 12:35:59.606 INFO  [restartedMain] [] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-02-27 12:36:00.522 INFO  [restartedMain] [] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-27 12:36:00.963 INFO  [restartedMain] [] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 422 ms. Found 16 JPA repository interfaces.
+2026-02-27 12:36:02.976 INFO  [restartedMain] [] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8181 (http)
+2026-02-27 12:36:02.999 INFO  [restartedMain] [] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8181"]
+2026-02-27 12:36:03.004 INFO  [restartedMain] [] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-27 12:36:03.004 INFO  [restartedMain] [] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2026-02-27 12:36:03.147 INFO  [restartedMain] [] o.a.c.c.C.[.[localhost].[/restroly] - Initializing Spring embedded WebApplicationContext
+2026-02-27 12:36:03.147 INFO  [restartedMain] [] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3541 ms
+2026-02-27 12:36:03.934 INFO  [restartedMain] [] c.r.q.s.CustomUserDetailsService - Initialized 3 sample users for authentication
+2026-02-27 12:36:04.061 DEBUG [restartedMain] [] c.r.q.s.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2026-02-27 12:36:04.061 DEBUG [restartedMain] [] o.s.w.f.ServerHttpObservationFilter - Filter 'webMvcObservationFilter' configured for use
+2026-02-27 12:36:04.432 INFO  [restartedMain] [] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-27 12:36:04.572 INFO  [restartedMain] [] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.8.Final
+2026-02-27 12:36:04.664 INFO  [restartedMain] [] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-02-27 12:36:05.289 INFO  [restartedMain] [] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-27 12:36:05.375 INFO  [restartedMain] [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-27 12:36:05.867 INFO  [restartedMain] [] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@66f116c9
+2026-02-27 12:36:05.873 INFO  [restartedMain] [] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-27 12:36:05.966 WARN  [restartedMain] [] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-27 12:36:08.216 INFO  [restartedMain] [] o.h.m.i.EntityInstantiatorPojoStandard - HHH000182: No default (no-argument) constructor for class: com.restroly.qrmenu.menu.entity.Menu (class must be instantiated by Interceptor)
+2026-02-27 12:36:09.192 INFO  [restartedMain] [] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-27 12:36:09.734 INFO  [restartedMain] [] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-27 12:36:11.124 INFO  [restartedMain] [] o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-27 12:36:13.297 DEBUG [restartedMain] [] o.s.w.s.s.s.WebSocketHandlerMapping - Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.r.q.a.HomeContrroller:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.r.q.a.c.AuthController:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.r.q.c.c.CategoryController:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.r.q.f.c.FoodController:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.r.q.o.c.OrderController:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.r.q.r.c.RestaurantController:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.r.q.t.c.AdminSectionController:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.r.q.t.c.AdminSectionTemplateController:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	c.r.q.t.c.PublicSiteController:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	o.s.w.a.OpenApiWebMvcResource:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	o.s.w.u.SwaggerWelcomeWebMvc:
+	
+2026-02-27 12:36:13.727 DEBUG [restartedMain] [] o.s.w.s.m.WebSocketAnnotationMethodMessageHandler - 
+	o.s.w.u.SwaggerConfigResource:
+	
+2026-02-27 12:36:14.124 DEBUG [restartedMain] [] o.s.w.s.m.m.a.RequestMappingHandlerMapping - 51 mappings in 'requestMappingHandlerMapping'
+2026-02-27 12:36:14.236 DEBUG [restartedMain] [] o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-02-27 12:36:14.444 INFO  [restartedMain] [] o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-27 12:36:14.571 INFO  [restartedMain] [] o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@62058509, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@720bb06a, org.springframework.security.web.context.SecurityContextHolderFilter@6b4d3bd3, org.springframework.security.web.header.HeaderWriterFilter@31cec9e4, org.springframework.web.filter.CorsFilter@35be8cdb, org.springframework.web.filter.CorsFilter@56f7c514, org.springframework.security.web.authentication.logout.LogoutFilter@35548a42, com.restroly.qrmenu.security.JwtAuthenticationFilter@6b4e9e87, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@58603da2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13a3eca9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@18942f0e, org.springframework.security.web.session.SessionManagementFilter@559af8a0, org.springframework.security.web.access.ExceptionTranslationFilter@39b664d2, org.springframework.security.web.access.intercept.AuthorizationFilter@24523498]
+2026-02-27 12:36:14.842 DEBUG [restartedMain] [] o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-02-27 12:36:14.921 DEBUG [restartedMain] [] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-02-27 12:36:15.432 INFO  [restartedMain] [] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-02-27 12:36:15.591 INFO  [restartedMain] [] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8181"]
+2026-02-27 12:36:15.639 INFO  [restartedMain] [] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8181 (http) with context path '/restroly'
+2026-02-27 12:36:15.655 DEBUG [restartedMain] [] org.springframework.web.SimpLogging - clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2026-02-27 12:36:15.655 DEBUG [restartedMain] [] org.springframework.web.SimpLogging - clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/app/]]
+2026-02-27 12:36:15.655 INFO  [restartedMain] [] o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2026-02-27 12:36:15.655 DEBUG [restartedMain] [] org.springframework.web.SimpLogging - clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@60ee7bed]
+2026-02-27 12:36:15.655 DEBUG [restartedMain] [] org.springframework.web.SimpLogging - brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@60ee7bed]
+2026-02-27 12:36:15.655 INFO  [restartedMain] [] o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@60ee7bed]]
+2026-02-27 12:36:15.655 INFO  [restartedMain] [] o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2026-02-27 12:36:15.655 DEBUG [restartedMain] [] org.springframework.web.SimpLogging - clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2026-02-27 12:36:15.655 DEBUG [restartedMain] [] org.springframework.web.SimpLogging - brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2026-02-27 12:36:15.671 INFO  [restartedMain] [] c.r.qrmenu.RestaurantApplication - Started RestaurantApplication in 16.653 seconds (process running for 17.212)
+2026-02-27 12:37:15.493 INFO  [MessageBroker-1] [] o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]

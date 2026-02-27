@@ -8,9 +8,14 @@ import com.restroly.qrmenu.branch.entity.Branch;
 import com.restroly.qrmenu.category.entity.Category;
 
 import jakarta.persistence.*;
-import lombok.Builder;
+import lombok.*;
+
 @Builder
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "t_menu_master")
 public class Menu {
 
