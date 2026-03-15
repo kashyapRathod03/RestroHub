@@ -1,9 +1,12 @@
 // src/main/java/com/Restroly/qrmenu/food/service/impl/FoodServiceImpl.java
 package com.restroly.qrmenu.food.service;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.restroly.qrmenu.common.exception.ResourceAlreadyExistsException;
 import com.restroly.qrmenu.common.exception.ResourceNotFoundException;
 import com.restroly.qrmenu.common.generic.PageResponseDTO;
+import com.restroly.qrmenu.config.CloudinaryService;
 import com.restroly.qrmenu.food.dto.*;
 import com.restroly.qrmenu.food.dto.FoodMapper;
 import com.restroly.qrmenu.food.dto.FoodRequestDTO;
@@ -13,16 +16,19 @@ import com.restroly.qrmenu.food.entity.Food;
 import com.restroly.qrmenu.food.repository.FoodRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.lang.Long;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +38,7 @@ public class FoodServiceImpl implements FoodService {
 
     private final FoodRepository foodRepository;
     private final FoodMapper foodMapper;
+    private final CloudinaryService cloudinaryService;
 
     private static final String FOOD_NOT_FOUND_MSG = "Food not found with id: %s";
     private static final String FOOD_EXISTS_MSG = "Food already exists with name: %s";
@@ -39,21 +46,29 @@ public class FoodServiceImpl implements FoodService {
     @Override
     @Transactional
     @CacheEvict(value = "foods", allEntries = true)
-    public FoodResponseDTO createFood(FoodRequestDTO requestDTO) {
-        log.info("Creating new food item: {}", requestDTO.getName());
+    public FoodResponseDTO createFood(FoodRequestDTO requestDTO, MultipartFile image) {
 
         if (foodRepository.existsByNameIgnoreCase(requestDTO.getName())) {
-            log.warn("Attempt to create duplicate food: {}", requestDTO.getName());
             throw new ResourceAlreadyExistsException(
-                    String.format(FOOD_EXISTS_MSG, requestDTO.getName()));
+                    "Food already exists: " + requestDTO.getName());
         }
 
-        Food food = foodMapper.toEntity(requestDTO);
-        Food savedFood = foodRepository.save(food);
+        // ✅ Upload BEFORE opening transaction (no DB connection held)
+        String imageUrl = null;
+        if (image != null && !image.isEmpty()) {
+            imageUrl = cloudinaryService.uploadImage(image, "qrmenu/foods");
+        }
 
-        log.info("Successfully created food item with id: {}", savedFood.getFoodId());
-        return foodMapper.toResponseDTO(savedFood);
+        // ✅ Short transaction - only DB work
+        Food food = foodMapper.toEntity(requestDTO);
+        if (imageUrl != null) {
+            food.setImageUrl(imageUrl);
+        }
+
+        Food saved = foodRepository.save(food);
+        return foodMapper.toResponseDTO(saved);
     }
+
 
     @Override
     @Cacheable(value = "food", key = "#id")
@@ -97,11 +112,11 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public PageResponseDTO<FoodResponseDTO> getFoodsByCategory(String category, Pageable pageable) {
+    public PageResponseDTO<FoodResponseDTO> getFoodsByCategory(Long categoryId, Pageable pageable) {
         log.debug("Fetching foods by category: {}, page: {}",
-                category, pageable.getPageNumber());
+                categoryId, pageable.getPageNumber());
 
-        Page<Food> foodPage = foodRepository.findByCategory(category, pageable);
+        Page<Food> foodPage = foodRepository.findByCategoryId(categoryId, pageable);
         return foodMapper.toPageResponseDTO(foodPage);
     }
 

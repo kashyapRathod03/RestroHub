@@ -21,7 +21,7 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
     List<Food> findByFoodIdInAndIsDeleteFalse(@Param("ids") List<Long> ids);
 
     @Query("SELECT f FROM Food f JOIN f.categories c WHERE c.categoryId = :categoryId AND f.isDelete = false")
-    List<Food> findByCategoryId(@Param("categoryId") Long categoryId);
+    Page<Food> findByCategoryId(@Param("categoryId") Long categoryId, Pageable pageable);
 
     Optional<Food> findByNameIgnoreCase(String name);
 

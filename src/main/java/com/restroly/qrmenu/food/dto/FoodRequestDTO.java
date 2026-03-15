@@ -32,7 +32,7 @@ public class FoodRequestDTO {
     @Schema(description = "Price of the food item", example = "14.99")
     private BigDecimal price;
 
-    @Size(min = 2, max = 50, message = "Category must be between 2 and 50 characters")
+    @Size(min = 1, max = 50, message = "Category must be between 1 and 50 characters")
     @Schema(description = "Category of the food item", example = "Pizza")
     private String category;
 
