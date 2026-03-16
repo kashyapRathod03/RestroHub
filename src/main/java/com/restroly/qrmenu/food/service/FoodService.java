@@ -7,6 +7,7 @@ import com.restroly.qrmenu.food.dto.FoodRequestDTO;
 import com.restroly.qrmenu.food.dto.FoodResponseDTO;
 import com.restroly.qrmenu.food.dto.FoodUpdateDTO;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.lang.Long;
 import java.math.BigDecimal;
@@ -14,9 +15,9 @@ import java.util.List;
 
 public interface FoodService {
 
-    FoodResponseDTO createFood(FoodRequestDTO requestDTO);
-
     FoodResponseDTO getFoodById(Long id);
+
+    FoodResponseDTO createFood(FoodRequestDTO requestDTO, MultipartFile image);
 
     FoodResponseDTO getFoodByName(String name);
 
@@ -24,7 +25,7 @@ public interface FoodService {
 
     PageResponseDTO<FoodResponseDTO> getAvailableFoods(Pageable pageable);
 
-    PageResponseDTO<FoodResponseDTO> getFoodsByCategory(String category, Pageable pageable);
+    PageResponseDTO<FoodResponseDTO> getFoodsByCategory(Long category, Pageable pageable);
 
     PageResponseDTO<FoodResponseDTO> searchFoods(
             String name,

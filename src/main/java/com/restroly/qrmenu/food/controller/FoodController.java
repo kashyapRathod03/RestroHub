@@ -29,10 +29,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
+import java.util.concurrent.atomic.LongAccumulator;
 
 import static com.restroly.qrmenu.common.util.ApiConstants.SECURE_API_VERSION;
 
@@ -47,7 +49,7 @@ public class FoodController {
     private final FoodService foodService;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)  // ← CHANGED
 //    @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
     @Operation(
             summary = "Create a new food item",
@@ -65,12 +67,13 @@ public class FoodController {
             @ApiResponse(responseCode = "403", description = "Forbidden - Insufficient permissions")
     })
     public ResponseEntity<FoodResponseDTO> createFood(
-            @Valid @RequestBody FoodRequestDTO requestDTO) {
+            @Valid @ModelAttribute FoodRequestDTO requestDTO,
+            @RequestParam(value = "image", required = false) MultipartFile image) {
 
         log.info("REST request to create food item: {}", requestDTO.getName());
-        FoodResponseDTO response = foodService.createFood(requestDTO);
+        FoodResponseDTO response = foodService.createFood(requestDTO, image);
 
-        URI location = URI.create("/"+ApiConstants.APP_NAME+SECURE_API_VERSION +"/foods/" + response.getFoodId());
+        URI location = URI.create("/" + ApiConstants.APP_NAME + SECURE_API_VERSION + "/foods/" + response.getFoodId());
         return ResponseEntity.created(location).body(response);
     }
 
@@ -162,7 +165,7 @@ public class FoodController {
     })
     public ResponseEntity<PageResponseDTO<FoodResponseDTO>> getFoodsByCategory(
             @Parameter(description = "Category name", required = true)
-            @PathVariable String category,
+            @PathVariable Long category,
             @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE) int page,
             @RequestParam(defaultValue = ApiConstants.DEFAULT_PAGE_SIZE) int size) {
 

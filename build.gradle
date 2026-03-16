@@ -32,14 +32,14 @@ ext {
 
 dependencies {
     // Spring Boot Starters
-    implementation 'org.springframework.boot:spring-boot-starter-web';
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa';
-    implementation 'org.springframework.boot:spring-boot-starter-validation';
-    implementation 'org.springframework.boot:spring-boot-starter-websocket';
-    implementation 'org.springframework.boot:spring-boot-starter-security';
-    implementation 'org.springframework.boot:spring-boot-starter-aop';
-    implementation 'org.springframework.boot:spring-boot-starter-actuator';
-    developmentOnly 'org.springframework.boot:spring-boot-devtools';
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     
     // Database
     runtimeOnly 'org.postgresql:postgresql:42.7.2'
@@ -58,6 +58,8 @@ dependencies {
     // QR Code Generation
     implementation 'com.google.zxing:core:3.5.2'
     implementation 'com.google.zxing:javase:3.5.2'
+
+    implementation 'com.cloudinary:cloudinary-http44:1.39.0'
     
     // Testing
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
