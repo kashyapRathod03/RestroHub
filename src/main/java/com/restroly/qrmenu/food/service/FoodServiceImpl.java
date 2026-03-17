@@ -3,6 +3,8 @@ package com.restroly.qrmenu.food.service;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.restroly.qrmenu.category.entity.Category;
+import com.restroly.qrmenu.category.repository.CategoryRepository;
 import com.restroly.qrmenu.common.exception.ResourceAlreadyExistsException;
 import com.restroly.qrmenu.common.exception.ResourceNotFoundException;
 import com.restroly.qrmenu.common.generic.PageResponseDTO;
@@ -39,6 +41,7 @@ public class FoodServiceImpl implements FoodService {
     private final FoodRepository foodRepository;
     private final FoodMapper foodMapper;
     private final CloudinaryService cloudinaryService;
+    private final CategoryRepository categoryRepository;
 
     private static final String FOOD_NOT_FOUND_MSG = "Food not found with id: %s";
     private static final String FOOD_EXISTS_MSG = "Food already exists with name: %s";
@@ -49,20 +52,27 @@ public class FoodServiceImpl implements FoodService {
     public FoodResponseDTO createFood(FoodRequestDTO requestDTO, MultipartFile image) {
 
         if (foodRepository.existsByNameIgnoreCase(requestDTO.getName())) {
-            throw new ResourceAlreadyExistsException(
-                    "Food already exists: " + requestDTO.getName());
+            throw new ResourceAlreadyExistsException("Food already exists: " + requestDTO.getName());
         }
 
-        // ✅ Upload BEFORE opening transaction (no DB connection held)
         String imageUrl = null;
         if (image != null && !image.isEmpty()) {
             imageUrl = cloudinaryService.uploadImage(image, "qrmenu/foods");
         }
 
-        // ✅ Short transaction - only DB work
+        // Use manual mapper
         Food food = foodMapper.toEntity(requestDTO);
+
         if (imageUrl != null) {
             food.setImageUrl(imageUrl);
+        }
+
+        // Set Category - This is the most important part
+        if (requestDTO.getCategoryId() != null) {
+            Category category = categoryRepository.findById(requestDTO.getCategoryId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + requestDTO.getCategoryId()));
+
+            food.setCategory(category);
         }
 
         Food saved = foodRepository.save(food);

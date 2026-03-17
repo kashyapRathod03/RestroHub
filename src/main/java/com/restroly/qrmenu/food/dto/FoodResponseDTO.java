@@ -29,8 +29,8 @@ public class FoodResponseDTO {
     @Schema(description = "Price of the food item", example = "12.99")
     private BigDecimal price;
 
-//    @Schema(description = "Category of the food item", example = "Pizza")
-//    private String category;
+    @Schema(description = "Category of the food item", example = "Pizza")
+    private Long categoryId;
 
     @Schema(description = "URL of the food item image")
     private String imageUrl;
