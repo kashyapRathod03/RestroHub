@@ -235,8 +235,7 @@ public class FoodController {
     }
 
     @PutMapping(value = "/{foodId}",
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
     @Operation(
             summary = "Update a food item",
@@ -255,15 +254,15 @@ public class FoodController {
     })
     public ResponseEntity<FoodResponseDTO> updateFood(
             @Parameter(description = "UUID of the food item", required = true)
-            @PathVariable Long foodId,
-            @Valid @RequestBody FoodUpdateDTO updateDTO) {
+            @PathVariable Long foodId, @RequestParam(value = "image", required = false) MultipartFile image,
+            @Valid @ModelAttribute FoodUpdateDTO updateDTO) {
 
         log.info("REST request to update food with id: {}", foodId);
-        FoodResponseDTO response = foodService.updateFood(foodId, updateDTO);
+        FoodResponseDTO response = foodService.updateFood(foodId, updateDTO, image);
         return ResponseEntity.ok(response);
     }
 
-    @PatchMapping(value = "/{foodId}/availability", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/{foodId}/{available}", produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
     @Operation(
             summary = "Update food availability",
@@ -278,7 +277,7 @@ public class FoodController {
             @Parameter(description = "UUID of the food item", required = true)
             @PathVariable Long foodId,
             @Parameter(description = "Availability status", required = true)
-            @RequestParam Boolean available) {
+            @PathVariable Boolean available) {
 
         log.info("REST request to update availability for food id: {} to: {}", foodId, available);
         FoodResponseDTO response = foodService.updateAvailability(foodId, available);

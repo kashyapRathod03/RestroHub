@@ -153,7 +153,7 @@ public class FoodServiceImpl implements FoodService {
     @Override
     @Transactional
     @CacheEvict(value = {"food", "foods"}, allEntries = true)
-    public FoodResponseDTO updateFood(Long id, FoodUpdateDTO updateDTO) {
+    public FoodResponseDTO updateFood(Long id, FoodUpdateDTO updateDTO, MultipartFile image) {
         log.info("Updating food with id: {}", id);
 
         Food existingFood = findFoodByIdOrThrow(id);
@@ -167,7 +167,22 @@ public class FoodServiceImpl implements FoodService {
             throw new ResourceAlreadyExistsException(
                     String.format(FOOD_EXISTS_MSG, updateDTO.getName()));
         }
-
+        if(!updateDTO.getImageUrl().equals(existingFood.getImageUrl())){
+            String imageUrl = null;
+            if (image != null && !image.isEmpty()) {
+                imageUrl = cloudinaryService.uploadImage(image, "qrmenu/foods");
+            }
+            if (imageUrl != null) {
+                updateDTO.setImageUrl(imageUrl);
+            }
+        }
+        if(existingFood.getCategory().getCategoryId() != updateDTO.getCategoryId()){
+            if (updateDTO.getCategoryId() != null) {
+                Category category = categoryRepository.findById(updateDTO.getCategoryId())
+                        .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + updateDTO.getCategoryId()));
+                existingFood.setCategory(category);
+            }
+        }
         foodMapper.updateEntityFromDTO(updateDTO, existingFood);
         Food updatedFood = foodRepository.save(existingFood);
 
