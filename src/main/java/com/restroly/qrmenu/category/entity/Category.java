@@ -1,4 +1,4 @@
-// com/restro/qrmenu/category/entity/Category.java
+// com/restroly/qrmenu/category/entity/Category.java
 package com.restroly.qrmenu.category.entity;
 
 import java.time.LocalDateTime;
@@ -6,14 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.restroly.qrmenu.food.entity.Food;
-
 import com.restroly.qrmenu.menu.entity.Menu;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "T_category_master")
@@ -42,9 +37,11 @@ public class Category {
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
 
-    @Builder.Default
-    @ManyToMany(mappedBy = "categories")
+    // ✅ CHANGE START: One-to-Many Relationship
+    // mappedBy points to the 'category' field name in the Food class (singular)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<Food> foods = new HashSet<>();
+    // ✅ CHANGE END
 
     @Builder.Default
     @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)

@@ -36,7 +36,7 @@ public interface FoodService {
             BigDecimal maxPrice,
             Pageable pageable);
 
-    FoodResponseDTO updateFood(Long id, FoodUpdateDTO updateDTO);
+    FoodResponseDTO updateFood(Long id, FoodUpdateDTO updateDTO, MultipartFile image);
 
     FoodResponseDTO updateAvailability(Long id, Boolean isAvailable);
 

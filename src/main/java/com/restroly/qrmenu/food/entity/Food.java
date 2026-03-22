@@ -1,4 +1,4 @@
-// com/restro/qrmenu/food/entity/Food.java
+// com/restroly/qrmenu/food/entity/Food.java
 package com.restroly.qrmenu.food.entity;
 
 import java.math.BigDecimal;
@@ -16,8 +16,9 @@ import org.hibernate.annotations.SQLRestriction;
 @Entity
 @Table(name = "t_food_master", indexes = {
         @Index(name = "idx_food_name", columnList = "name"),
-//        @Index(name = "idx_food_category", columnList = "category"),
-        @Index(name = "idx_food_available", columnList = "isAvailable")
+        @Index(name = "idx_food_available", columnList = "isAvailable"),
+        // ✅ Add index on the new FK for performance
+        @Index(name = "idx_food_category", columnList = "category_id")
 })
 @Getter
 @Setter
@@ -25,9 +26,9 @@ import org.hibernate.annotations.SQLRestriction;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(of = "foodId")
-@SQLDelete(sql = "UPDATE foods SET is_delete = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE t_food_master SET is_delete = true WHERE food_id = ?")
 @SQLRestriction("is_delete = false")
-public class Food  {
+public class Food {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +47,7 @@ public class Food  {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "isAvailable",nullable = false)
+    @Column(name = "isAvailable", nullable = false)
     @Builder.Default
     private Boolean isAvailable = true;
 
@@ -64,24 +65,20 @@ public class Food  {
     @Builder.Default
     private Boolean isDelete = false;
 
-    @ManyToMany
-    @JoinTable(
-        name = "T_rel_foodCat",
-        joinColumns = @JoinColumn(name = "food_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    @Builder.Default
-    private Set<Category> categories = new HashSet<>();
+    // ✅ CHANGE START: One-to-Many Relationship
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+    // ✅ CHANGE END
 
-    @PrePersist // this automaticatically add dateCreated and updatedDate when new entity added
+    @PrePersist
     protected void onCreate() {
         dateCreated = LocalDateTime.now();
         updatedDate = LocalDateTime.now();
     }
 
-    @PreUpdate // this automaticatically update updatedDate when existing entity update
+    @PreUpdate
     protected void onUpdate() {
         updatedDate = LocalDateTime.now();
     }
-
 }
